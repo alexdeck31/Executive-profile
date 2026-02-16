@@ -9,7 +9,6 @@ interface Message {
 }
 
 // Utility to generate a UUID-like string without relying on crypto.randomUUID()
-// This ensures compatibility across all browsers and contexts (HTTP/HTTPS)
 const generateSessionId = (): string => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
@@ -19,6 +18,7 @@ const generateSessionId = (): string => {
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome-1',
@@ -39,7 +39,7 @@ const ChatWidget: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [sessionId, setSessionId] = useState('');
 
-  // Generate or retrieve session ID using the compatibility function
+  // Generate or retrieve session ID
   useEffect(() => {
     let storedSession = localStorage.getItem('n8n_chat_session');
     if (!storedSession) {
@@ -47,19 +47,27 @@ const ChatWidget: React.FC = () => {
       localStorage.setItem('n8n_chat_session', storedSession);
     }
     setSessionId(storedSession);
+
+    // Show proactive prompt after 5 seconds
+    const timer = setTimeout(() => {
+      setShowPrompt(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
   }, []);
+
+  // Handle open state
+  useEffect(() => {
+    if (isOpen) {
+      setShowPrompt(false); // Hide prompt when manually opened
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [isOpen]);
 
   // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isOpen, isTyping]);
-
-  // Focus input when opening
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
-  }, [isOpen]);
 
   const handleSendMessage = async (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -95,7 +103,6 @@ const ChatWidget: React.FC = () => {
       const decoder = new TextDecoder();
       let buffer = '';
       
-      // Create a placeholder bot message that we will stream content into
       const botMessageId = 'bot-' + Date.now();
       setMessages(prev => [...prev, {
         id: botMessageId,
@@ -112,8 +119,6 @@ const ChatWidget: React.FC = () => {
 
         buffer += decoder.decode(value, { stream: true });
         const lines = buffer.split('\n');
-        
-        // Keep the last chunk if it's incomplete
         buffer = lines.pop() || '';
 
         for (const line of lines) {
@@ -121,12 +126,8 @@ const ChatWidget: React.FC = () => {
           
           try {
             const data = JSON.parse(line);
-            
-            // Handle N8N AI Agent stream format
             if (data.type === 'item' && data.content) {
               fullBotText += data.content;
-              
-              // Update the specific message in state
               setMessages(prev => prev.map(msg => 
                 msg.id === botMessageId 
                   ? { ...msg, text: fullBotText }
@@ -156,12 +157,32 @@ const ChatWidget: React.FC = () => {
       {/* Floating Action Button Container */}
       <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3 pointer-events-none">
         
-        {/* Text Label - Visible when closed */}
+        {/* Proactive Notification Prompt */}
+        <div 
+          className={`
+            pointer-events-auto bg-white text-zinc-900 px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-white/20 relative
+            transform transition-all duration-500 ease-out origin-bottom-right max-w-[250px]
+            ${showPrompt && !isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}
+          `}
+        >
+          <button 
+            onClick={() => setShowPrompt(false)}
+            className="absolute -top-2 -left-2 bg-zinc-900 text-white rounded-full p-0.5 shadow-md hover:bg-zinc-700"
+          >
+            <X size={12} />
+          </button>
+          <p className="text-sm font-medium leading-tight">
+            Curious about my Sales Strategy? <br />
+            <span className="text-cyan-600 font-bold">Ask me anything!</span> 👇
+          </p>
+        </div>
+
+        {/* Text Label - Visible when closed (and no prompt) */}
         <div 
           className={`
             pointer-events-auto bg-white/10 backdrop-blur-lg border border-white/20 text-white px-5 py-3 rounded-2xl rounded-br-sm shadow-2xl
             transform transition-all duration-500 ease-out origin-bottom-right flex items-center gap-3
-            ${isOpen ? 'opacity-0 translate-y-4 scale-75 pointer-events-none' : 'opacity-100 translate-y-0 scale-100'}
+            ${isOpen || showPrompt ? 'opacity-0 translate-y-4 scale-75 pointer-events-none' : 'opacity-100 translate-y-0 scale-100'}
           `}
         >
           <span className="relative flex h-2 w-2">

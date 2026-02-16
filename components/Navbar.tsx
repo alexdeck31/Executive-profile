@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
 import { CV_LINK } from '../constants';
+import { trackCVDownload } from '../analytics';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,6 +52,7 @@ const Navbar: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wide bg-white/10 hover:bg-white/20 border border-white/10 rounded-full transition-all text-white"
+            onClick={() => trackCVDownload('navbar_desktop')}
           >
             <Download size={14} /> CV
           </a>
@@ -83,6 +85,7 @@ const Navbar: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer"
             className="text-cyan-400 text-lg flex items-center gap-2 mt-4"
+            onClick={() => trackCVDownload('navbar_mobile')}
           >
             <Download size={18} /> Download CV
           </a>

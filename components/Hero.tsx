@@ -2,6 +2,7 @@ import React from 'react';
 import { Mail, Linkedin } from 'lucide-react';
 import Button from './ui/Button';
 import { PROFILE_PHOTO_URL, CV_LINK, getEmail, LINKEDIN_URL } from '../constants';
+import { trackCVDownload, trackLinkedinClick } from '../analytics';
 
 const Hero: React.FC = () => {
   const handleEmailClick = (e: React.MouseEvent) => {
@@ -77,7 +78,12 @@ const Hero: React.FC = () => {
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4">
-                  <Button href={CV_LINK} external className="w-full sm:w-auto ring-1 ring-white/20">
+                  <Button 
+                    href={CV_LINK} 
+                    external 
+                    className="w-full sm:w-auto ring-1 ring-white/20"
+                    onClick={() => trackCVDownload('hero')}
+                  >
                     Download CV
                   </Button>
                   
@@ -88,6 +94,7 @@ const Hero: React.FC = () => {
                       rel="noopener noreferrer"
                       className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/50 text-white transition-all hover:scale-110"
                       aria-label="LinkedIn"
+                      onClick={() => trackLinkedinClick('hero')}
                     >
                       <Linkedin size={20} />
                     </a>

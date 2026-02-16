@@ -1,6 +1,6 @@
 import React from 'react';
 import { Globe, TrendingUp, Users, Cpu, Briefcase, Rocket, BarChart3, Languages } from 'lucide-react';
-import { Experience, Education, Video, Skill, ValueCardItem } from './types';
+import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from './types';
 
 // Updated with the new profile photo
 export const PROFILE_PHOTO_URL = "https://lh3.googleusercontent.com/d/16y0uO-vLfNKpZgG1D7mKLihaGZ29JWtN"; 
@@ -201,5 +201,32 @@ export const VIDEOS: Video[] = [
     description: 'How technology drives sustainable city development.',
     thumbnail: 'https://img.youtube.com/vi/VuyMXY1m79I/maxresdefault.jpg',
     youtubeId: 'VuyMXY1m79I'
+  }
+];
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: 't1',
+    name: 'Sarah Chen',
+    role: 'VP of Sales',
+    company: 'TechFlow Solutions',
+    content: 'Alexandre is a visionary leader who knows how to build and scale international teams. His strategic approach to market expansion is unmatched.',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop'
+  },
+  {
+    id: 't2',
+    name: 'Marc Dubois',
+    role: 'CEO',
+    company: 'Mobility Now',
+    content: 'Working with Alexandre was a game-changer for our European operations. He brings a unique blend of technical understanding and commercial acumen.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop'
+  },
+  {
+    id: 't3',
+    name: 'Elena Rossi',
+    role: 'Marketing Director',
+    company: 'Future Systems',
+    content: 'His ability to navigate complex sales cycles and build lasting relationships with key stakeholders is truly impressive. A true asset to any organization.',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop'
   }
 ];

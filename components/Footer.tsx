@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Linkedin, Copy, Check } from 'lucide-react';
 import Button from './ui/Button';
 import { getEmail, LINKEDIN_URL } from '../constants';
+import { trackLinkedinClick } from '../analytics';
 
 const Footer: React.FC = () => {
   const [emailRevealed, setEmailRevealed] = useState(false);
@@ -36,7 +37,12 @@ const Footer: React.FC = () => {
         </h2>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-          <Button href={LINKEDIN_URL} external icon={<Linkedin size={18} className="ml-2"/>}>
+          <Button 
+            href={LINKEDIN_URL} 
+            external 
+            icon={<Linkedin size={18} className="ml-2"/>}
+            onClick={() => trackLinkedinClick('footer')}
+          >
             Connect on LinkedIn
           </Button>
           

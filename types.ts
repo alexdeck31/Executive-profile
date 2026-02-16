@@ -40,3 +40,12 @@ export interface ValueCardItem {
   description: string;
   details: string[];
 }
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+  image: string;
+}
