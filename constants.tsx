@@ -218,26 +218,26 @@ export const VIDEOS: Video[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
-    name: 'Sarah Chen',
-    role: 'VP of Sales',
-    company: 'TechFlow Solutions',
-    content: 'Alexandre is a visionary leader who knows how to build and scale international teams. His strategic approach to market expansion is unmatched.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop'
+    name: 'Jean-Marc Lazzari',
+    role: 'CEO',
+    company: 'Instant System',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80', 
+    content: 'Alexandre is a driven sales leader who understands how to build international bridges. His ability to navigate complex public tenders and build long-term relationships is a true asset.'
   },
   {
     id: 't2',
-    name: 'Marc Dubois',
-    role: 'CEO',
-    company: 'Mobility Now',
-    content: 'Working with Alexandre was a game-changer for our European operations. He brings a unique blend of technical understanding and commercial acumen.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop'
+    name: 'Guillaume R.',
+    role: 'Aerospace Director',
+    company: 'ECA Group',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
+    content: 'An exceptional business developer who opened entirely new markets for our defense sector. Alexandre combines technical knowledge with strong negotiation skills.'
   },
   {
     id: 't3',
-    name: 'Elena Rossi',
-    role: 'Marketing Director',
-    company: 'Future Systems',
-    content: 'His ability to navigate complex sales cycles and build lasting relationships with key stakeholders is truly impressive. A true asset to any organization.',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop'
+    name: 'Marco B.',
+    role: 'Regional Manager',
+    company: 'Groupe Delta Dore',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
+    content: 'His leadership in opening the Italian market was exemplary. He built the subsidiary from the ground up and achieved consistent double-digit growth.'
   }
 ];
