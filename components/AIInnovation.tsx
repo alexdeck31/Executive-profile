@@ -1,8 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
 import { Bot, Workflow, Code2, Database, BrainCircuit, Target, CheckCircle2 } from 'lucide-react';
 
 const AIInnovation: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) observer.unobserve(containerRef.current);
+    };
+  }, []);
+
   return (
     <Section id="ai-innovation" className="bg-zinc-950 py-24 relative overflow-hidden">
       {/* Background Decorative Elements */}
@@ -41,10 +64,16 @@ const AIInnovation: React.FC = () => {
         </div>
 
         {/* Main Grid Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
           {/* Left Column: Visual/Technical Illustration */}
-          <div className="relative group rounded-3xl overflow-hidden min-h-[400px] lg:min-h-full border border-white/10 bg-black/40">
+          <div 
+            className={`
+              relative group rounded-3xl overflow-hidden min-h-[400px] lg:min-h-full border border-white/10 bg-black/40
+              transition-all duration-700 ease-out transform
+              ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}
+            `}
+          >
             {/* Image Overlay */}
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2832&auto=format&fit=crop')] bg-cover bg-center opacity-40 mix-blend-screen transition-transform duration-[20s] group-hover:scale-110"></div>
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent"></div>
@@ -71,7 +100,14 @@ const AIInnovation: React.FC = () => {
           <div className="flex flex-col gap-6">
             
             {/* Card 1: SDR Automation */}
-            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-cyan-500/30 hover:bg-zinc-900 transition-all duration-300 group">
+            <div 
+              className={`
+                p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-cyan-500/30 hover:bg-zinc-900 transition-all duration-300 group
+                transform transition-all duration-700 ease-out
+                ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}
+              `}
+              style={{ transitionDelay: '200ms' }}
+            >
               <div className="flex items-start justify-between mb-4">
                 <div className="p-3 rounded-full bg-blue-500/10 text-blue-400">
                   <Workflow size={24} />
@@ -86,7 +122,14 @@ const AIInnovation: React.FC = () => {
             </div>
 
             {/* Card 2: MEDDIC Discovery */}
-            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-cyan-500/30 hover:bg-zinc-900 transition-all duration-300 group">
+            <div 
+              className={`
+                p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-cyan-500/30 hover:bg-zinc-900 transition-all duration-300 group
+                transform transition-all duration-700 ease-out
+                ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}
+              `}
+              style={{ transitionDelay: '400ms' }}
+            >
               <div className="flex items-start justify-between mb-4">
                 <div className="p-3 rounded-full bg-cyan-500/10 text-cyan-400">
                   <Target size={24} />
@@ -101,7 +144,14 @@ const AIInnovation: React.FC = () => {
             </div>
 
             {/* Card 3: N8N Orchestration */}
-            <div className="p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-purple-500/30 hover:bg-zinc-900 transition-all duration-300 group">
+            <div 
+              className={`
+                p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-purple-500/30 hover:bg-zinc-900 transition-all duration-300 group
+                transform transition-all duration-700 ease-out
+                ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}
+              `}
+              style={{ transitionDelay: '600ms' }}
+            >
               <div className="flex items-start justify-between mb-4">
                 <div className="p-3 rounded-full bg-purple-500/10 text-purple-400">
                   <Bot size={24} />

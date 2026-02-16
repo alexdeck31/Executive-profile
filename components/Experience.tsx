@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
 import { EXPERIENCES } from '../constants';
 import { ChevronDown, MapPin, Briefcase } from 'lucide-react';
 
 const Experience: React.FC = () => {
-  // Store an array of expanded IDs to allow multiple items to be open at once
   const [expandedIds, setExpandedIds] = useState<string[]>([EXPERIENCES[0].id]);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Expand functionality (used on Hover)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) observer.unobserve(containerRef.current);
+    };
+  }, []);
+
   const expandExperience = (id: string) => {
     if (!expandedIds.includes(id)) {
       setExpandedIds((prev) => [...prev, id]);
     }
   };
 
-  // Toggle functionality (used on Click to allow manual closing)
   const toggleExperience = (id: string) => {
     if (expandedIds.includes(id)) {
       setExpandedIds((prev) => prev.filter((itemId) => itemId !== id));
@@ -35,16 +54,23 @@ const Experience: React.FC = () => {
           </h2>
         </div>
 
-        <div className="relative">
+        <div className="relative" ref={containerRef}>
           {/* Continuous Vertical Line */}
           <div className="absolute left-[9px] md:left-[11px] top-4 bottom-4 w-[2px] bg-white/10 rounded-full"></div>
 
           <div className="space-y-6">
-            {EXPERIENCES.map((exp) => {
+            {EXPERIENCES.map((exp, index) => {
               const isExpanded = expandedIds.includes(exp.id);
 
               return (
-                <div key={exp.id} className="relative pl-10 md:pl-16">
+                <div 
+                  key={exp.id} 
+                  className={`
+                    relative pl-10 md:pl-16 transition-all duration-700 ease-out transform
+                    ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}
+                  `}
+                  style={{ transitionDelay: `${index * 150}ms` }}
+                >
                   
                   {/* Timeline Dot */}
                   <div 

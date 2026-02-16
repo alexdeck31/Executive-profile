@@ -1,14 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Section from './ui/Section';
 import { VALUE_CARDS } from '../constants';
 import { Plus } from 'lucide-react';
 
 const Profile: React.FC = () => {
   const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [isGridVisible, setIsGridVisible] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const toggleCard = (id: string) => {
     setActiveCard(activeCard === id ? null : id);
   };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsGridVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (gridRef.current) {
+      observer.observe(gridRef.current);
+    }
+
+    return () => {
+      if (gridRef.current) observer.unobserve(gridRef.current);
+    };
+  }, []);
 
   return (
     <Section id="profile" className="bg-black py-20 md:py-32">
@@ -33,8 +55,8 @@ const Profile: React.FC = () => {
         </div>
 
         {/* Dynamic Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {VALUE_CARDS.map((card) => {
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {VALUE_CARDS.map((card, index) => {
             const isActive = activeCard === card.id;
 
             return (
@@ -42,12 +64,15 @@ const Profile: React.FC = () => {
                 key={card.id}
                 onClick={() => toggleCard(card.id)}
                 className={`
-                  relative group p-8 rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden
+                  relative group p-8 rounded-2xl border cursor-pointer overflow-hidden
+                  transition-all duration-700 ease-out transform
                   ${isActive 
                     ? 'bg-zinc-900 border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.15)]' 
                     : 'bg-zinc-900/40 border-white/5 hover:border-white/10 hover:bg-zinc-900/80'
                   }
+                  ${isGridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}
                 `}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {/* Icon Container */}
                 <div className={`
@@ -85,7 +110,7 @@ const Profile: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Interactive Indicator (Visual hint to click) */}
+                {/* Interactive Indicator */}
                 <div className={`absolute top-6 right-6 transition-transform duration-500 text-slate-600 ${isActive ? 'rotate-45 text-cyan-500' : 'group-hover:text-white'}`}>
                    <Plus size={20} />
                 </div>
