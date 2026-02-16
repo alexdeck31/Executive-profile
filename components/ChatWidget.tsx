@@ -8,6 +8,15 @@ interface Message {
   timestamp: Date;
 }
 
+// Utility to generate a UUID-like string without relying on crypto.randomUUID()
+// This ensures compatibility across all browsers and contexts (HTTP/HTTPS)
+const generateSessionId = (): string => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+};
+
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -30,11 +39,11 @@ const ChatWidget: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [sessionId, setSessionId] = useState('');
 
-  // Generate or retrieve session ID
+  // Generate or retrieve session ID using the compatibility function
   useEffect(() => {
     let storedSession = localStorage.getItem('n8n_chat_session');
     if (!storedSession) {
-      storedSession = crypto.randomUUID();
+      storedSession = generateSessionId();
       localStorage.setItem('n8n_chat_session', storedSession);
     }
     setSessionId(storedSession);
