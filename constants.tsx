@@ -1,5 +1,5 @@
 import React from 'react';
-import { Globe, TrendingUp, Users, Cpu, Briefcase, Rocket, BarChart3, Languages } from 'lucide-react';
+import { Globe, TrendingUp, Users, Cpu, Briefcase, Rocket, BarChart3, Languages, Bot } from 'lucide-react';
 import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from './types';
 
 // Updated with the new profile photo
@@ -168,6 +168,17 @@ export const VALUE_CARDS: ValueCardItem[] = [
       'Managed P&L for international units',
       'Recruited & trained sales teams',
       'Cross-cultural management'
+    ]
+  },
+  {
+    id: 'vc6',
+    title: 'Agentic AI & Automation',
+    icon: <Bot size={24} />,
+    description: 'Leveraging AI agents to automate complex workflows and drive operational efficiency.',
+    details: [
+      'Certified N8N Expert',
+      'Sales Operation Automation',
+      'Custom Agent Development'
     ]
   }
 ];

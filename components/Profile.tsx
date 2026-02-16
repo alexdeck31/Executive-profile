@@ -8,7 +8,16 @@ const Profile: React.FC = () => {
   const [isGridVisible, setIsGridVisible] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
 
-  const toggleCard = (id: string) => {
+  const handleCardClick = (id: string) => {
+    // If it's the Agentic AI card (vc6), scroll to the AI Innovation section
+    if (id === 'vc6') {
+      const element = document.getElementById('ai-innovation');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+    // Otherwise toggle the accordion
     setActiveCard(activeCard === id ? null : id);
   };
 
@@ -62,7 +71,7 @@ const Profile: React.FC = () => {
             return (
               <div 
                 key={card.id}
-                onClick={() => toggleCard(card.id)}
+                onClick={() => handleCardClick(card.id)}
                 className={`
                   relative group p-8 rounded-2xl border cursor-pointer overflow-hidden
                   transition-all duration-700 ease-out transform
