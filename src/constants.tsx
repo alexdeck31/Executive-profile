@@ -1,6 +1,6 @@
 import React from 'react';
 import { Globe, TrendingUp, Users, Cpu, Briefcase, Rocket, BarChart3, Languages, Bot } from 'lucide-react';
-import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from './types';
+import { Experience, Education, Video, Skill, ValueCardItem } from './types';
 
 // Updated with the new profile photo
 export const PROFILE_PHOTO_URL = "https://lh3.googleusercontent.com/d/16y0uO-vLfNKpZgG1D7mKLihaGZ29JWtN"; 
@@ -212,32 +212,5 @@ export const VIDEOS: Video[] = [
     description: 'How technology drives sustainable city development.',
     thumbnail: 'https://img.youtube.com/vi/VuyMXY1m79I/maxresdefault.jpg',
     youtubeId: 'VuyMXY1m79I'
-  }
-];
-
-export const TESTIMONIALS: Testimonial[] = [
-  {
-    id: 't1',
-    name: 'Jean-Marc Lazzari',
-    role: 'CEO',
-    company: 'Instant System',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80', 
-    content: 'Alexandre is a driven sales leader who understands how to build international bridges. His ability to navigate complex public tenders and build long-term relationships is a true asset.'
-  },
-  {
-    id: 't2',
-    name: 'Guillaume R.',
-    role: 'Aerospace Director',
-    company: 'ECA Group',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
-    content: 'An exceptional business developer who opened entirely new markets for our defense sector. Alexandre combines technical knowledge with strong negotiation skills.'
-  },
-  {
-    id: 't3',
-    name: 'Marco B.',
-    role: 'Regional Manager',
-    company: 'Groupe Delta Dore',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
-    content: 'His leadership in opening the Italian market was exemplary. He built the subsidiary from the ground up and achieved consistent double-digit growth.'
   }
 ];
