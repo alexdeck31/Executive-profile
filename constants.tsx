@@ -187,15 +187,14 @@ export const SKILLS: Skill[] = [
   { name: 'International Sales', level: 98, category: 'core' },
   { name: 'Business Development', level: 95, category: 'core' },
   { name: 'Team Leadership', level: 92, category: 'core' },
-  { name: 'Business Planning', level: 90, category: 'core' },
-  { name: 'Marketing', level: 85, category: 'core' },
+  { name: 'Business Planning', level: 80, category: 'core' },
+  { name: 'Marketing', level: 75, category: 'core' },
   { name: 'Go-to-Market', level: 94, category: 'core' },
   
   { name: 'French (Native)', level: 100, category: 'language' },
   { name: 'English (Fluent)', level: 95, category: 'language' },
   { name: 'Italian (Fluent)', level: 95, category: 'language' },
-  { name: 'Spanish', level: 60, category: 'language' },
-  { name: 'Vietnamese', level: 40, category: 'language' }
+  { name: 'Spanish (Intermediate)', level: 40, category: 'language' },
 ];
 
 export const VIDEOS: Video[] = [
