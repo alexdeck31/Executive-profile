@@ -11,7 +11,6 @@ import AIInnovation from './components/AIInnovation';
 import Skills from './components/Skills';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
-import Testimonials from './components/Testimonials';
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
         <Profile />
         <Experience />
         <Skills />
-        <Testimonials />
         <Education />
         <Keynotes />
         <Passions />
