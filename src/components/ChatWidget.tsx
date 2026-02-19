@@ -1,159 +1,86 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, User, Bot, Loader2 } from 'lucide-react';
-
-interface Message {
-  id: string;
-  text: string;
-  sender: 'user' | 'bot';
-  timestamp: Date;
-}
-
-// Utility to generate a UUID-like string without relying on crypto.randomUUID()
-const generateSessionId = (): string => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-};
+import React, { useState, useEffect, useRef } from 'react';
+import { MessageCircle, X } from 'lucide-react';
+import { createChat } from '@n8n/chat';
+import '@n8n/chat/style.css';
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 'welcome-1',
-      text: 'Hello! 👋',
-      sender: 'bot',
-      timestamp: new Date()
-    },
-    {
-      id: 'welcome-2',
-      text: 'Ask me anything about Alexandre Durand.',
-      sender: 'bot',
-      timestamp: new Date()
-    }
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [sessionId, setSessionId] = useState('');
+  const initialized = useRef(false);
 
-  // Generate or retrieve session ID
   useEffect(() => {
-    let storedSession = localStorage.getItem('n8n_chat_session');
-    if (!storedSession) {
-      storedSession = generateSessionId();
-      localStorage.setItem('n8n_chat_session', storedSession);
-    }
-    setSessionId(storedSession);
-
     // Show proactive prompt after 5 seconds
     const timer = setTimeout(() => {
       setShowPrompt(true);
     }, 5000);
-
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle open state
+  // Handle open state: Hide prompt when opened
   useEffect(() => {
     if (isOpen) {
-      setShowPrompt(false); // Hide prompt when manually opened
-      setTimeout(() => inputRef.current?.focus(), 100);
+      setShowPrompt(false);
     }
   }, [isOpen]);
 
-  // Auto-scroll to bottom
+  // Initialize n8n chat
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isOpen, isTyping]);
+    if (initialized.current) return;
 
-  const handleSendMessage = async (e?: React.FormEvent) => {
-    e?.preventDefault();
-    if (!inputValue.trim()) return;
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      text: inputValue,
-      sender: 'user',
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, userMessage]);
-    setInputValue('');
-    setIsTyping(true);
-
-    try {
-      const response = await fetch('https://n8n.alexandredurand.cloud/webhook/6fc3bcc6-a413-4729-8d42-198fa41c2698/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    createChat({
+      webhookUrl: 'https://n8n.alexandredurand.cloud/webhook/6fc3bcc6-a413-4729-8d42-198fa41c2698/chat',
+      target: '#n8n-chat-container',
+      mode: 'fullscreen',
+      showWelcomeScreen: false,
+      initialMessages: [
+        'Hello! 👋',
+        'Ask me anything about Alexandre Durand.'
+      ],
+      i18n: {
+        en: {
+          title: "Alexandre's AI Assistant",
+          subtitle: "Ask me anything",
+          getStarted: "New Conversation",
+          inputPlaceholder: "Type your message...",
         },
-        body: JSON.stringify({
-          action: 'sendMessage',
-          sessionId: sessionId,
-          chatInput: userMessage.text
-        })
-      });
+      },
+    });
 
-      if (!response.body) throw new Error('No response body');
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = '';
-      
-      const botMessageId = 'bot-' + Date.now();
-      setMessages(prev => [...prev, {
-        id: botMessageId,
-        text: '',
-        sender: 'bot',
-        timestamp: new Date()
-      }]);
-
-      let fullBotText = '';
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n');
-        buffer = lines.pop() || '';
-
-        for (const line of lines) {
-          if (!line.trim()) continue;
-          
-          try {
-            const data = JSON.parse(line);
-            if (data.type === 'item' && data.content) {
-              fullBotText += data.content;
-              setMessages(prev => prev.map(msg => 
-                msg.id === botMessageId 
-                  ? { ...msg, text: fullBotText }
-                  : msg
-              ));
-            }
-          } catch (err) {
-            console.warn('Failed to parse stream chunk:', line);
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Chat error:', error);
-      setMessages(prev => [...prev, {
-        id: 'error-' + Date.now(),
-        text: "Sorry, I am having trouble connecting to the server. Please try again later.",
-        sender: 'bot',
-        timestamp: new Date()
-      }]);
-    } finally {
-      setIsTyping(false);
-    }
-  };
+    initialized.current = true;
+  }, []);
 
   return (
     <>
+      <style>{`
+        :root {
+          --chat--color-primary: #06b6d4;
+          --chat--color-primary-shade-50: #0891b2;
+          --chat--color-primary-shade-100: #0e7490;
+          --chat--color-secondary: #27272a;
+          --chat--color-secondary-shade-50: #3f3f46;
+          --chat--color-light-shade-50: #18181b;
+          --chat--color-light-shade-100: #27272a;
+          --chat--color-dark-shade-50: #94a3b8;
+          --chat--color-dark-shade-100: #ffffff;
+          --chat--color-background: #18181b;
+          --chat--color-typing-indicator: #06b6d4;
+          --chat--message-text-color: #f1f5f9;
+          --chat--header-background-color: #09090b;
+          --chat--font-family: 'Inter', sans-serif;
+          --chat--border-radius: 1rem;
+        }
+        
+        .n8n-chat-layout {
+          background-color: #18181b !important;
+        }
+        .n8n-chat-header {
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .n8n-chat-input-container {
+          border-top: 1px solid rgba(255,255,255,0.1);
+        }
+      `}</style>
+
       {/* Floating Action Button Container */}
       <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3 pointer-events-none">
         
@@ -177,7 +104,7 @@ const ChatWidget: React.FC = () => {
           </p>
         </div>
 
-        {/* Text Label - Visible when closed (and no prompt) */}
+        {/* Text Label */}
         <div 
           className={`
             pointer-events-auto bg-white/10 backdrop-blur-lg border border-white/20 text-white px-5 py-3 rounded-2xl rounded-br-sm shadow-2xl
@@ -206,7 +133,7 @@ const ChatWidget: React.FC = () => {
         </button>
       </div>
 
-      {/* Chat Window */}
+      {/* Chat Window Container */}
       <div
         className={`fixed bottom-28 right-6 w-[90vw] md:w-[400px] h-[600px] max-h-[70vh] bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl z-[9998] flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right ${
           isOpen 
@@ -214,80 +141,7 @@ const ChatWidget: React.FC = () => {
             : 'opacity-0 scale-95 translate-y-10 pointer-events-none'
         }`}
       >
-        {/* Header */}
-        <div className="p-4 bg-zinc-950 border-b border-white/5 flex items-center justify-between">
-          <div>
-            <h3 className="text-white font-bold flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
-              Alexandre's IA assistant
-            </h3>
-          </div>
-          <button 
-            onClick={() => setIsOpen(false)}
-            className="text-slate-500 hover:text-white transition-colors"
-          >
-            <X size={18} />
-          </button>
-        </div>
-
-        {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
-          {messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`flex items-start gap-3 ${
-                msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
-              }`}
-            >
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                msg.sender === 'user' ? 'bg-cyan-500/20 text-cyan-500' : 'bg-zinc-800 text-slate-400'
-              }`}>
-                {msg.sender === 'user' ? <User size={14} /> : <Bot size={14} />}
-              </div>
-              
-              <div
-                className={`max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed ${
-                  msg.sender === 'user'
-                    ? 'bg-cyan-600 text-white rounded-tr-sm'
-                    : 'bg-zinc-800 text-slate-200 rounded-tl-sm'
-                }`}
-              >
-                {msg.text}
-              </div>
-            </div>
-          ))}
-
-          {isTyping && (
-             <div className="flex items-start gap-3">
-               <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-slate-400">
-                 <Bot size={14} />
-               </div>
-               <div className="bg-zinc-800 p-3 rounded-2xl rounded-tl-sm">
-                 <Loader2 size={16} className="animate-spin text-cyan-500" />
-               </div>
-             </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Input Area */}
-        <form onSubmit={handleSendMessage} className="p-4 bg-zinc-950 border-t border-white/5 flex gap-2">
-          <input
-            ref={inputRef}
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Type your message..."
-            className="flex-1 bg-zinc-900 border border-white/10 rounded-full px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition-colors placeholder:text-slate-600"
-          />
-          <button
-            type="submit"
-            disabled={!inputValue.trim() || isTyping}
-            className="w-10 h-10 rounded-full bg-cyan-600 text-white flex items-center justify-center hover:bg-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            <Send size={18} />
-          </button>
-        </form>
+        <div id="n8n-chat-container" className="w-full h-full relative"></div>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Globe, TrendingUp, Users, Cpu, Briefcase, Rocket, BarChart3, Languages, Bot } from 'lucide-react';
+import { Globe, TrendingUp, Users, Cpu, Briefcase, Bot } from 'lucide-react';
 import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from './types';
 
 // Updated with the new profile photo
@@ -14,7 +14,6 @@ const EMAIL_DOMAIN = "gmail.com";
 export const getEmail = () => `${EMAIL_USER}@${EMAIL_DOMAIN}`;
 
 // --- PHOTOGRAPHY SECTION ---
-// Direct links converted from the provided Google Drive IDs
 export const PHOTOGRAPHY_IMAGES = [
   "https://lh3.googleusercontent.com/d/1XlwosfS5e-8Kgsk3HodlIdLt2vKvri85",
   "https://lh3.googleusercontent.com/d/1XPnIC1LnbPtXeZrwrv4XDf6_moZiZmxg",
@@ -33,7 +32,7 @@ export const EXPERIENCES: Experience[] = [
     id: 'exp1',
     role: 'Head of International Sales',
     company: 'Instant System',
-    period: 'April 2022 – Present',
+    period: 'April 2022 – Dec 2025',
     location: 'Paris, France',
     description: 'Leading international expansion for Mobility as a Service (MaaS) solutions.',
     achievements: [

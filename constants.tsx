@@ -33,7 +33,7 @@ export const EXPERIENCES: Experience[] = [
     id: 'exp1',
     role: 'Head of International Sales',
     company: 'Instant System',
-    period: 'April 2022 – Present',
+    period: 'April 2022 – Dec 2025',
     location: 'Paris, France',
     description: 'Leading international expansion for Mobility as a Service (MaaS) solutions.',
     achievements: [
