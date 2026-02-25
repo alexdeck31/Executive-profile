@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Linkedin } from 'lucide-react';
 import Button from './ui/Button';
-import { PROFILE_PHOTO_URL, CV_LINK, getEmail, LINKEDIN_URL } from '../constants';
-import { trackCVDownload, trackLinkedinClick } from '../analytics';
+import { PROFILE_PHOTO_URL, getEmail, LINKEDIN_URL } from '../constants';
+import { trackLinkedinClick } from '../analytics';
+import CVDownloadModal from './ui/CVDownloadModal';
 
 const Hero: React.FC = () => {
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+
   const handleEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();
     window.location.href = `mailto:${getEmail()}`;
@@ -81,10 +84,8 @@ const Hero: React.FC = () => {
 
                 <div className="flex flex-wrap items-center gap-4">
                   <Button 
-                    href={CV_LINK} 
-                    external 
+                    onClick={() => setIsCVModalOpen(true)}
                     className="w-full sm:w-auto ring-1 ring-white/20"
-                    onClick={() => trackCVDownload('hero')}
                   >
                     Download CV
                   </Button>
@@ -126,6 +127,13 @@ const Hero: React.FC = () => {
           <div className="w-1 h-1.5 bg-white rounded-full"></div>
         </div>
       </div>
+
+      {/* CV Download Modal */}
+      <CVDownloadModal 
+        isOpen={isCVModalOpen} 
+        onClose={() => setIsCVModalOpen(false)} 
+        source="hero"
+      />
 
     </section>
   );

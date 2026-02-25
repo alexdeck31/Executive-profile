@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Download } from 'lucide-react';
-import { CV_LINK } from '../constants';
-import { trackCVDownload } from '../analytics';
+import CVDownloadModal from './ui/CVDownloadModal';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,15 +50,12 @@ const Navbar: React.FC = () => {
                 {link.name}
               </a>
             ))}
-            <a 
-              href={CV_LINK} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wide bg-white/10 hover:bg-white/20 border border-white/10 rounded-full transition-all text-white"
-              onClick={() => trackCVDownload('navbar_desktop')}
+            <button 
+              onClick={() => setIsCVModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wide bg-white/10 hover:bg-white/20 border border-white/10 rounded-full transition-all text-white cursor-pointer"
             >
               <Download size={14} /> CV
-            </a>
+            </button>
           </div>
 
           {/* Mobile Toggle */}
@@ -85,16 +82,23 @@ const Navbar: React.FC = () => {
             {link.name}
           </a>
         ))}
-        <a 
-          href={CV_LINK} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="text-cyan-400 text-lg flex items-center gap-2 mt-4"
-          onClick={() => trackCVDownload('navbar_mobile')}
+        <button 
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+            setIsCVModalOpen(true);
+          }}
+          className="text-cyan-400 text-lg flex items-center gap-2 mt-4 cursor-pointer"
         >
           <Download size={18} /> Download CV
-        </a>
+        </button>
       </div>
+
+      {/* CV Download Modal */}
+      <CVDownloadModal 
+        isOpen={isCVModalOpen} 
+        onClose={() => setIsCVModalOpen(false)} 
+        source="navbar"
+      />
     </>
   );
 };

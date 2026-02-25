@@ -15,12 +15,14 @@ export const trackEvent = (action: string, params?: Record<string, any>) => {
 };
 
 // Specific tracker for CV downloads
-export const trackCVDownload = (source: string) => {
+export const trackCVDownload = (source: string, version: 'design' | 'printable') => {
   trackEvent('download_cv', {
     event_category: 'Engagement',
-    event_label: `Downloaded from ${source}`,
-    file_name: 'Alexandre_Durand_CV.pdf',
-    link_url: 'https://drive.google.com/file/d/1A3hftXGzDdbRfDXMYz2ZQeECGEtg0Ysx/view?usp=drive_link'
+    event_label: `Downloaded ${version} version from ${source}`,
+    file_name: version === 'design' ? 'Alexandre_Durand_CV_Design.pdf' : 'Alexandre_Durand_CV_Printable.pdf',
+    link_url: version === 'design' 
+      ? 'https://drive.google.com/file/d/1nMZ7PVTAzCI3Eq2eBk1t46h7ugn8Ryvm/view?usp=drive_link'
+      : 'https://drive.google.com/file/d/1qBTyevZVo7Z5jw_GoNM2OyCisKmcBRKf/view?usp=drive_link'
   });
 };
 
