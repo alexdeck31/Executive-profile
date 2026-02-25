@@ -2,33 +2,29 @@
 
 :root {
   /* --- N8N Chat Variable Overrides for Dark Mode --- */
-  /* Using !important to ensure these override the default n8n styles */
+  /* Corrected variable names based on source code */
   
-  /* Colors */
-  --chat--color-primary: #06b6d4 !important;
-  --chat--color-secondary: #18181b !important;
-  --chat--color-dark: #ffffff !important;
-  --chat--color-light: #e4e4e7 !important;
+  /* Header */
+  --chat--header--background: #09090b !important;
+  --chat--header--color: #ffffff !important;
   
-  /* Window & Header */
-  --chat--window--bg-color: #18181b !important;
-  --chat--header--bg-color: #09090b !important;
-  --chat--header--text-color: #ffffff !important;
+  /* Body */
+  --chat--body--background: #18181b !important;
   
-  /* Messages */
-  --chat--message--bot--bg-color: #27272a !important;
-  --chat--message--bot--text-color: #f4f4f5 !important;
-  --chat--message--user--bg-color: #06b6d4 !important;
-  --chat--message--user--text-color: #ffffff !important;
+  /* Footer */
+  --chat--footer--background: #18181b !important;
+  --chat--footer--color: #ffffff !important;
   
   /* Input */
-  --chat--input--bg-color: #09090b !important;
+  --chat--input--background: #09090b !important;
   --chat--input--text-color: #ffffff !important;
   --chat--input--placeholder-color: #71717a !important;
   
-  /* Toggle Button (if used in window mode, but good to have) */
-  --chat--toggle--bg-color: #06b6d4 !important;
-  --chat--toggle--text-color: #ffffff !important;
+  /* Messages */
+  --chat--message--bot--background: #27272a !important;
+  --chat--message--bot--color: #f4f4f5 !important;
+  --chat--message--user--background: #06b6d4 !important;
+  --chat--message--user--color: #ffffff !important;
 }
 
 body {
@@ -42,53 +38,27 @@ body {
   width: 100%;
 }
 
-/* Deep CSS Overrides for N8N Chat Structure - ensuring dark mode consistency */
-.n8n-chat-layout {
-  background-color: var(--chat--window--bg-color) !important;
-  font-family: 'Inter', sans-serif !important;
+/* Deep CSS Overrides for N8N Chat Structure */
+.chat-layout .chat-body {
+  background: #18181b !important;
 }
-
-.n8n-chat-header {
-  background-color: var(--chat--header--bg-color) !important;
+.chat-layout .chat-header {
+  background: #09090b !important;
+  color: #ffffff !important;
   border-bottom: 1px solid rgba(255,255,255,0.1) !important;
 }
-
-.n8n-chat-message-container {
-  background-color: var(--chat--window--bg-color) !important; 
+.chat-layout .chat-footer {
+  background: #18181b !important;
+  color: #ffffff !important;
 }
-
-.n8n-chat-input {
-  background-color: var(--chat--input--bg-color) !important;
-  border-top: 1px solid rgba(255,255,255,0.1) !important;
-}
-
-.n8n-chat-input textarea {
-  background-color: #27272a !important;
+.chat-inputs textarea {
+  background: #27272a !important;
   color: #ffffff !important;
   border: 1px solid rgba(255,255,255,0.1) !important;
-  border-radius: 99px !important;
-  padding: 12px 20px !important;
 }
-
-.n8n-chat-input textarea::placeholder {
-  color: #71717a !important;
-}
-
-.n8n-chat-input textarea:focus {
-  border-color: #06b6d4 !important;
-  outline: none !important;
-}
-
-.n8n-chat-input button {
-  color: #06b6d4 !important;
-}
-
-.n8n-chat-input button:hover {
-  color: #ffffff !important;
-}
-
-.n8n-chat-footer {
-  display: none !important;
+.chat-inputs {
+  background: #09090b !important;
+  border-top: 1px solid rgba(255,255,255,0.1) !important;
 }
 
 /* Custom scrollbar for webkit */

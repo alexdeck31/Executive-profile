@@ -54,52 +54,66 @@ const ChatWidget: React.FC = () => {
     <>
       <style>{`
         :root {
-          --chat--color-primary: #06b6d4 !important;
-          --chat--color-secondary: #18181b !important;
-          --chat--color-dark: #ffffff !important;
-          --chat--color-light: #e4e4e7 !important;
+          /* Corrected N8N Chat Variables based on source */
           
-          --chat--window--bg-color: #18181b !important;
-          --chat--header--bg-color: #09090b !important;
-          --chat--header--text-color: #ffffff !important;
+          /* Header */
+          --chat--header--background: #09090b !important;
+          --chat--header--color: #ffffff !important;
           
-          --chat--message--bot--bg-color: #27272a !important;
-          --chat--message--bot--text-color: #f4f4f5 !important;
+          /* Body / Main Window Area */
+          --chat--body--background: #18181b !important;
+          --chat--window--background: #18181b !important;
           
-          --chat--message--user--bg-color: #06b6d4 !important;
-          --chat--message--user--text-color: #ffffff !important;
+          /* Footer */
+          --chat--footer--background: #18181b !important;
+          --chat--footer--color: #ffffff !important;
           
-          --chat--input--bg-color: #09090b !important;
+          /* Input Area */
+          --chat--input--background: #09090b !important;
           --chat--input--text-color: #ffffff !important;
           --chat--input--placeholder-color: #71717a !important;
+          
+          /* Messages */
+          --chat--message--bot--background: #27272a !important;
+          --chat--message--bot--color: #f4f4f5 !important;
+          
+          --chat--message--user--background: #06b6d4 !important;
+          --chat--message--user--color: #ffffff !important;
+          
+          /* General Colors - Overriding these helps if specific vars are missed */
+          --chat--color-light: #e4e4e7 !important; /* Text color usually */
+          --chat--color-dark: #ffffff !important; /* Inverted for dark mode */
         }
 
-        /* Target the container specifically to ensure variables apply */
+        /* Target the container specifically */
         #n8n-chat-container {
-          --chat--window--bg-color: #18181b;
-          --chat--header--bg-color: #09090b;
-          --chat--input--bg-color: #09090b;
-          --chat--message--bot--bg-color: #27272a;
+          --chat--body--background: #18181b;
+          --chat--header--background: #09090b;
+          --chat--input--background: #09090b;
           background-color: #18181b;
         }
 
-        /* Force overrides on specific elements in case variables fail */
-        .n8n-chat-layout {
-          background-color: #18181b !important;
+        /* Deep overrides for specific classes found in source */
+        .chat-layout .chat-body {
+          background: #18181b !important;
         }
-        .n8n-chat-header {
-          background-color: #09090b !important;
+        .chat-layout .chat-header {
+          background: #09090b !important;
+          color: #ffffff !important;
+          border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+        }
+        .chat-layout .chat-footer {
+          background: #18181b !important;
           color: #ffffff !important;
         }
-        .n8n-chat-message-container {
-          background-color: #18181b !important;
-        }
-        .n8n-chat-input {
-          background-color: #09090b !important;
-        }
-        .n8n-chat-input textarea {
-          background-color: #27272a !important;
+        .chat-inputs textarea {
+          background: #27272a !important;
           color: #ffffff !important;
+          border: 1px solid rgba(255,255,255,0.1) !important;
+        }
+        .chat-inputs {
+          background: #09090b !important;
+          border-top: 1px solid rgba(255,255,255,0.1) !important;
         }
       `}</style>
 
