@@ -52,6 +52,57 @@ const ChatWidget: React.FC = () => {
 
   return (
     <>
+      <style>{`
+        :root {
+          --chat--color-primary: #06b6d4 !important;
+          --chat--color-secondary: #18181b !important;
+          --chat--color-dark: #ffffff !important;
+          --chat--color-light: #e4e4e7 !important;
+          
+          --chat--window--bg-color: #18181b !important;
+          --chat--header--bg-color: #09090b !important;
+          --chat--header--text-color: #ffffff !important;
+          
+          --chat--message--bot--bg-color: #27272a !important;
+          --chat--message--bot--text-color: #f4f4f5 !important;
+          
+          --chat--message--user--bg-color: #06b6d4 !important;
+          --chat--message--user--text-color: #ffffff !important;
+          
+          --chat--input--bg-color: #09090b !important;
+          --chat--input--text-color: #ffffff !important;
+          --chat--input--placeholder-color: #71717a !important;
+        }
+
+        /* Target the container specifically to ensure variables apply */
+        #n8n-chat-container {
+          --chat--window--bg-color: #18181b;
+          --chat--header--bg-color: #09090b;
+          --chat--input--bg-color: #09090b;
+          --chat--message--bot--bg-color: #27272a;
+          background-color: #18181b;
+        }
+
+        /* Force overrides on specific elements in case variables fail */
+        .n8n-chat-layout {
+          background-color: #18181b !important;
+        }
+        .n8n-chat-header {
+          background-color: #09090b !important;
+          color: #ffffff !important;
+        }
+        .n8n-chat-message-container {
+          background-color: #18181b !important;
+        }
+        .n8n-chat-input {
+          background-color: #09090b !important;
+        }
+        .n8n-chat-input textarea {
+          background-color: #27272a !important;
+          color: #ffffff !important;
+        }
+      `}</style>
+
       {/* Floating Action Button Container */}
       <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3">
         
