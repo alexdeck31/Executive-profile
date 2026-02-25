@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  /* --- N8N Chat Variable Overrides for Dark Mode --- */
+  /* Using !important to ensure these override the default n8n styles */
+  
+  /* Colors */
+  --chat--color-primary: #06b6d4 !important;
+  --chat--color-secondary: #18181b !important;
+  --chat--color-dark: #ffffff !important;
+  --chat--color-light: #e4e4e7 !important;
+  
+  /* Window & Header */
+  --chat--window--bg-color: #18181b !important;
+  --chat--header--bg-color: #09090b !important;
+  --chat--header--text-color: #ffffff !important;
+  
+  /* Messages */
+  --chat--message--bot--bg-color: #27272a !important;
+  --chat--message--bot--text-color: #f4f4f5 !important;
+  --chat--message--user--bg-color: #06b6d4 !important;
+  --chat--message--user--text-color: #ffffff !important;
+  
+  /* Input */
+  --chat--input--bg-color: #09090b !important;
+  --chat--input--text-color: #ffffff !important;
+  --chat--input--placeholder-color: #71717a !important;
+  
+  /* Toggle Button (if used in window mode, but good to have) */
+  --chat--toggle--bg-color: #06b6d4 !important;
+  --chat--toggle--text-color: #ffffff !important;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Ensure the chat container inherits these properties */
+#n8n-chat-container {
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+/* Deep CSS Overrides for N8N Chat Structure - ensuring dark mode consistency */
+.n8n-chat-layout {
+  background-color: var(--chat--window--bg-color) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.n8n-chat-header {
+  background-color: var(--chat--header--bg-color) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.n8n-chat-message-container {
+  background-color: var(--chat--window--bg-color) !important; 
+}
+
+.n8n-chat-input {
+  background-color: var(--chat--input--bg-color) !important;
+  border-top: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.n8n-chat-input textarea {
+  background-color: #27272a !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 99px !important;
+  padding: 12px 20px !important;
+}
+
+.n8n-chat-input textarea::placeholder {
+  color: #71717a !important;
+}
+
+.n8n-chat-input textarea:focus {
+  border-color: #06b6d4 !important;
+  outline: none !important;
+}
+
+.n8n-chat-input button {
+  color: #06b6d4 !important;
+}
+
+.n8n-chat-input button:hover {
+  color: #ffffff !important;
+}
+
+.n8n-chat-footer {
+  display: none !important;
+}
+
+/* Custom scrollbar for webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-blue {
+  background: linear-gradient(to right, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

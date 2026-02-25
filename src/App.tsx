@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import Hero from './components/Hero';
@@ -11,7 +10,6 @@ import AIInnovation from './components/AIInnovation';
 import Skills from './components/Skills';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
-import Testimonials from './components/Testimonials';
 
 function App() {
   return (
@@ -28,7 +26,6 @@ function App() {
         <Keynotes />
         <Passions />
         <AIInnovation />
-        <Testimonials />
       </main>
       
       <Footer />

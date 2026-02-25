@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
 import { EXPERIENCES } from '../constants';
-import { ChevronDown, MapPin, Briefcase } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const Experience: React.FC = () => {
   const [expandedIds, setExpandedIds] = useState<string[]>([EXPERIENCES[0].id]);

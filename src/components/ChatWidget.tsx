@@ -9,21 +9,20 @@ const ChatWidget: React.FC = () => {
   const initialized = useRef(false);
 
   useEffect(() => {
-    // Show proactive prompt after 5 seconds
+    // Show prompt after 5 seconds
     const timer = setTimeout(() => {
       setShowPrompt(true);
     }, 5000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle open state: Hide prompt when opened
   useEffect(() => {
+    // Hide prompt if chat is opened
     if (isOpen) {
       setShowPrompt(false);
     }
   }, [isOpen]);
 
-  // Initialize n8n chat
   useEffect(() => {
     if (initialized.current) return;
 
@@ -34,14 +33,16 @@ const ChatWidget: React.FC = () => {
       showWelcomeScreen: false,
       initialMessages: [
         'Hello! 👋',
-        'Ask me anything about Alexandre Durand.'
+        'I am here to answer any questions about Alexandre\'s experience and expertise.'
       ],
       i18n: {
         en: {
-          title: "Alexandre's AI Assistant",
-          subtitle: "Ask me anything",
+          title: "AI Assistant",
+          subtitle: "Ask about Alexandre's profile",
+          footer: "",
           getStarted: "New Conversation",
           inputPlaceholder: "Type your message...",
+          closeButtonTooltip: "Close Chat",
         },
       },
     });
@@ -51,43 +52,13 @@ const ChatWidget: React.FC = () => {
 
   return (
     <>
-      <style>{`
-        :root {
-          --chat--color-primary: #06b6d4;
-          --chat--color-primary-shade-50: #0891b2;
-          --chat--color-primary-shade-100: #0e7490;
-          --chat--color-secondary: #27272a;
-          --chat--color-secondary-shade-50: #3f3f46;
-          --chat--color-light-shade-50: #18181b;
-          --chat--color-light-shade-100: #27272a;
-          --chat--color-dark-shade-50: #94a3b8;
-          --chat--color-dark-shade-100: #ffffff;
-          --chat--color-background: #18181b;
-          --chat--color-typing-indicator: #06b6d4;
-          --chat--message-text-color: #f1f5f9;
-          --chat--header-background-color: #09090b;
-          --chat--font-family: 'Inter', sans-serif;
-          --chat--border-radius: 1rem;
-        }
-        
-        .n8n-chat-layout {
-          background-color: #18181b !important;
-        }
-        .n8n-chat-header {
-          border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .n8n-chat-input-container {
-          border-top: 1px solid rgba(255,255,255,0.1);
-        }
-      `}</style>
-
       {/* Floating Action Button Container */}
-      <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3 pointer-events-none">
+      <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3">
         
         {/* Proactive Notification Prompt */}
         <div 
           className={`
-            pointer-events-auto bg-white text-zinc-900 px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-white/20 relative
+            bg-white text-zinc-900 px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-white/20 relative
             transform transition-all duration-500 ease-out origin-bottom-right max-w-[250px]
             ${showPrompt && !isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}
           `}
@@ -107,24 +78,24 @@ const ChatWidget: React.FC = () => {
         {/* Text Label */}
         <div 
           className={`
-            pointer-events-auto bg-white/10 backdrop-blur-lg border border-white/20 text-white px-5 py-3 rounded-2xl rounded-br-sm shadow-2xl
-            transform transition-all duration-500 ease-out origin-bottom-right flex items-center gap-3
+            bg-white/10 backdrop-blur-lg border border-white/20 text-white px-5 py-3 rounded-2xl rounded-br-sm shadow-2xl
+            transform transition-all duration-500 ease-out origin-bottom-right flex items-center gap-3 cursor-pointer
             ${isOpen || showPrompt ? 'opacity-0 translate-y-4 scale-75 pointer-events-none' : 'opacity-100 translate-y-0 scale-100'}
           `}
+          onClick={() => setIsOpen(true)}
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </span>
-          <span className="font-bold text-sm tracking-wide">Alexandre's IA assistant</span>
+          <span className="font-bold text-sm tracking-wide">Alexandre's AI Assistant</span>
         </div>
 
         {/* Toggle Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            pointer-events-auto
-            w-16 h-16 rounded-full shadow-[0_0_40px_rgba(6,182,212,0.5)] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_60px_rgba(6,182,212,0.7)]
+            w-16 h-16 rounded-full shadow-[0_0_40px_rgba(6,182,212,0.5)] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_60px_rgba(6,182,212,0.7)] z-50
             ${isOpen ? 'bg-zinc-900 border border-white/10 text-white rotate-90' : 'bg-gradient-to-tr from-cyan-600 to-blue-600 text-white rotate-0'}
           `}
           aria-label="Toggle Chat"
@@ -141,7 +112,7 @@ const ChatWidget: React.FC = () => {
             : 'opacity-0 scale-95 translate-y-10 pointer-events-none'
         }`}
       >
-        <div id="n8n-chat-container" className="w-full h-full relative"></div>
+        <div id="n8n-chat-container" className="w-full h-full"></div>
       </div>
     </>
   );

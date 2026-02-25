@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
-import { Bot, Workflow, Code2, Database, BrainCircuit, Target, CheckCircle2 } from 'lucide-react';
+import { Bot, Workflow, Code2, BrainCircuit, Target, CheckCircle2 } from 'lucide-react';
 
 const AIInnovation: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);

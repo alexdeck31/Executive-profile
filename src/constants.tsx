@@ -1,4 +1,3 @@
-import React from 'react';
 import { Globe, TrendingUp, Users, Cpu, Briefcase, Bot } from 'lucide-react';
 import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from './types';
 

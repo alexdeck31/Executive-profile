@@ -24,6 +24,8 @@ const Hero: React.FC = () => {
               src={PROFILE_PHOTO_URL} 
               alt="Alexandre Durand" 
               className="w-full h-full object-cover object-top transition-transform duration-[3s] hover:scale-105"
+              loading="eager"
+              fetchpriority="high"
             />
             
             {/* Desktop Gradient: Fades to background on the right */}
