@@ -34,7 +34,7 @@ export const EXPERIENCES: Experience[] = [
     company: 'Instant System',
     period: 'April 2022 – Dec 2025',
     location: 'Paris, France',
-    description: 'Leading international expansion for Mobility as a Service (MaaS) solutions.',
+    description: 'Leading international expansion for Mobility as a Service (MaaS) solutions. Acting as a Strategic Business Development Consultant for new market entries.',
     achievements: [
       'Expanded international footprint from 0 to 8 countries.',
       'Built a 30M+€ ARR pipeline from scratch.',
@@ -48,7 +48,7 @@ export const EXPERIENCES: Experience[] = [
     company: 'ECA Group (now Exail)',
     period: 'Feb 2019 – April 2022',
     location: 'Toulon, France',
-    description: 'Spearheaded the creation of a new industrial line derived from defense technology.',
+    description: 'Spearheaded the creation of a new industrial line derived from defense technology. Managed complex B2B sales cycles in high-stakes environments.',
     achievements: [
       'Managed hybrid B2G and B2B sales cycles (50–300K€ deal size).',
       'Opened markets in Americas, Western Europe, Israel, and UAE.',

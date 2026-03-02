@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
          <div className="relative w-full h-full">
             <img 
               src={PROFILE_PHOTO_URL} 
-              alt="Alexandre Durand" 
+              alt="Portrait Alexandre Durand - Expert SaaS & IA" 
               className="w-full h-full object-cover object-top transition-transform duration-[3s] hover:scale-105"
               loading="eager"
               fetchpriority="high"
@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
 
                 {/* Subtitle */}
                 <h2 className="text-lg md:text-xl text-slate-200 font-medium mb-6 border-l-2 border-cyan-500/50 pl-4 leading-relaxed">
-                  SaaS · Sustainability & Tech · B2B sales leader · Agentic AI enabler
+                  Consultant Business Development International · Expert SaaS & IA · Agentic AI Enabler
                 </h2>
 
                 {/* Personal Quote */}
