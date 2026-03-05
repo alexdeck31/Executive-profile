@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
             <img 
               src={PROFILE_PHOTO_URL} 
               alt="Portrait Alexandre Durand - Expert SaaS & IA" 
-              className="w-full h-full object-cover object-top transition-transform duration-[3s] hover:scale-105"
+              className="w-full h-full object-cover object-top md:object-center transition-transform duration-[3s] hover:scale-105"
               loading="eager"
               fetchpriority="high"
             />
