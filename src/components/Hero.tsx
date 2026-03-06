@@ -73,13 +73,13 @@ const Hero: React.FC = () => {
 
                 {/* Subtitle */}
                 <h2 className="text-lg md:text-xl text-slate-200 font-medium mb-6 border-l-2 border-cyan-500/50 pl-4 leading-relaxed">
-                  Consultant Business Development International · Expert SaaS & IA · Agentic AI Enabler
+                  SaaS · Sustainability & Tech · B2B sales leader · Agentic AI enabler
                 </h2>
 
                 {/* Personal Quote */}
                 <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8 font-light italic border-t border-white/5 pt-6 max-w-xl">
                   "Passionate about innovation, performance and making business scalable especially where Tech and impact meet"
-                  <span className="block mt-2 text-slate-500 text-xs uppercase tracking-wider not-italic">Based in Paris, France</span>
+                  <span className="block mt-2 text-slate-500 text-xs uppercase tracking-wider not-italic">BASED IN PARIS, FRANCE</span>
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4">
