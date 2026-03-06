@@ -4,8 +4,8 @@ import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from 
 // Updated with the new profile photo
 export const PROFILE_PHOTO_URL = "https://lh3.googleusercontent.com/d/1uufkzWpEuoP40yVD6ZK56dcnuWQAnFbQ"; 
 
-export const CV_DESIGN_URL = "https://drive.google.com/file/d/1nMZ7PVTAzCI3Eq2eBk1t46h7ugn8Ryvm/view?usp=drive_link";
-export const CV_PRINTABLE_URL = "https://drive.google.com/file/d/1qBTyevZVo7Z5jw_GoNM2OyCisKmcBRKf/view?usp=drive_link";
+export const CV_DESIGN_URL = "https://drive.google.com/file/d/10beq5iI_F9T66BQofOdY13ZyTk7XpD0w/view?usp=drive_link";
+export const CV_PRINTABLE_URL = "https://drive.google.com/file/d/1amzvLEXub3ywWBGTK81VGDWUuljr0a4B/view?usp=drive_link";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/durandalexandre/";
 
 // Email Obfuscation to prevent scraping
