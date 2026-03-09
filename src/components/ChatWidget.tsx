@@ -27,7 +27,7 @@ const ChatWidget: React.FC = () => {
     if (initialized.current) return;
 
     createChat({
-      webhookUrl: 'https://n8n.alexandredurand.cloud/webhook/6fc3bcc6-a413-4729-8d42-198fa41c2698/chat',
+      webhookUrl: 'https://n8n-z5sl.srv1475502.hstgr.cloud/webhook/6fc3bcc6-a413-4729-8d42-198fa41c2698/chat',
       target: '#n8n-chat-container',
       mode: 'fullscreen',
       showWelcomeScreen: false,
