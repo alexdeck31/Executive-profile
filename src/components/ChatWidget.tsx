@@ -118,13 +118,13 @@ const ChatWidget: React.FC = () => {
       `}</style>
 
       {/* Floating Action Button Container */}
-      <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-3">
+      <div className="fixed bottom-6 right-6 z-[9998] flex flex-col items-end gap-3 pointer-events-none">
         
         {/* Proactive Notification Prompt */}
         <div 
           className={`
             bg-white text-zinc-900 px-4 py-3 rounded-2xl rounded-br-none shadow-xl border border-white/20 relative
-            transform transition-all duration-500 ease-out origin-bottom-right max-w-[250px]
+            transform transition-all duration-500 ease-out origin-bottom-right max-w-[250px] pointer-events-auto
             ${showPrompt && !isOpen ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-75 pointer-events-none'}
           `}
         >
@@ -144,7 +144,7 @@ const ChatWidget: React.FC = () => {
         <div 
           className={`
             bg-white/10 backdrop-blur-lg border border-white/20 text-white px-5 py-3 rounded-2xl rounded-br-sm shadow-2xl
-            transform transition-all duration-500 ease-out origin-bottom-right flex items-center gap-3 cursor-pointer
+            transform transition-all duration-500 ease-out origin-bottom-right flex items-center gap-3 cursor-pointer pointer-events-auto
             ${isOpen || showPrompt ? 'opacity-0 translate-y-4 scale-75 pointer-events-none' : 'opacity-100 translate-y-0 scale-100'}
           `}
           onClick={() => setIsOpen(true)}
@@ -160,7 +160,7 @@ const ChatWidget: React.FC = () => {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={`
-            w-16 h-16 rounded-full shadow-[0_0_40px_rgba(6,182,212,0.5)] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_60px_rgba(6,182,212,0.7)] z-50
+            w-16 h-16 rounded-full shadow-[0_0_40px_rgba(6,182,212,0.5)] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_60px_rgba(6,182,212,0.7)] z-50 pointer-events-auto
             ${isOpen ? 'bg-zinc-900 border border-white/10 text-white rotate-90' : 'bg-gradient-to-tr from-cyan-600 to-blue-600 text-white rotate-0'}
           `}
           aria-label="Toggle Chat"
@@ -171,7 +171,7 @@ const ChatWidget: React.FC = () => {
 
       {/* Chat Window Container */}
       <div
-        className={`fixed bottom-28 right-6 w-[90vw] md:w-[400px] h-[600px] max-h-[70vh] bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl z-[9998] flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right ${
+        className={`fixed bottom-28 right-6 w-[90vw] md:w-[400px] h-[600px] max-h-[70vh] bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl z-[9999] flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right ${
           isOpen 
             ? 'opacity-100 scale-100 translate-y-0' 
             : 'opacity-0 scale-95 translate-y-10 pointer-events-none'
