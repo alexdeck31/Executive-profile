@@ -46,7 +46,7 @@ const AIInnovation: React.FC = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Business Automation</span>
             </h2>
             <p className="text-slate-400 text-lg leading-relaxed mt-4">
-              En tant qu'<strong>Expert IA N8N</strong>, je conçois des agents autonomes qui optimisent les opérations de revenus (RevOps) et accélèrent les workflows SDR. Une approche technique au service de la performance commerciale.
+              As an <strong>N8N AI Expert</strong>, I design autonomous agents that optimize Revenue Operations (RevOps) and accelerate SDR workflows. A technical approach serving commercial performance.
             </p>
           </div>
           
@@ -158,10 +158,10 @@ const AIInnovation: React.FC = () => {
                 </div>
                 <span className="text-xs font-mono text-slate-500 uppercase">Orchestration</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Orchestration Multi-Agents (Expert IA N8N)</h3>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Multi-Agent Orchestration (N8N AI Expert)</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Connexion des outils métiers (Slack, HubSpot, Notion, Gmail) dans des workflows cohérents. 
-                Expertise en chaînage de nœuds LLM pour gérer des tâches de raisonnement complexes et des processus de décision autonomes.
+                Connecting business tools (Slack, HubSpot, Notion, Gmail) into coherent workflows. 
+                Expertise in chaining LLM nodes to handle complex reasoning tasks and autonomous decision-making processes.
               </p>
             </div>
 
