@@ -2,8 +2,10 @@ import React from 'react';
 import Section from './ui/Section';
 import ImageSlider from './ui/ImageSlider';
 import { PHOTOGRAPHY_IMAGES } from '../constants';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Passions: React.FC = () => {
+  const { t } = useLanguage();
   const climbingImages = [
     "https://lh3.googleusercontent.com/d/1vAwiq6NU4NhnJsEn5aL8U_vP9aEnBUhR",
     "https://lh3.googleusercontent.com/d/1bMNMdptgfJYo0nviEGPb2L4j13uGu7Zo"
@@ -13,16 +15,16 @@ const Passions: React.FC = () => {
     <div id="passions" className="bg-black pb-20">
       <Section className="pb-0">
         <div className="text-center mb-16">
-          <span className="text-cyan-500 uppercase tracking-widest text-xs font-bold">Personal Interests</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mt-2">Beyond Business</h2>
+          <span className="text-cyan-500 uppercase tracking-widest text-xs font-bold">{t('passions.sectionTitle')}</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mt-2">{t('passions.sectionSubtitle')}</h2>
         </div>
       </Section>
 
       {/* Photography Section with Dynamic Auto Slider */}
       <div className="mb-24">
         <div className="container mx-auto px-4 mb-8 flex items-center justify-between">
-          <h3 className="text-2xl font-light text-white border-l-2 border-cyan-500 pl-4">Photography</h3>
-          <p className="hidden md:block text-slate-500 text-sm italic">Drag or hover to pause • Click to expand</p>
+          <h3 className="text-2xl font-light text-white border-l-2 border-cyan-500 pl-4">{t('passions.photography')}</h3>
+          <p className="hidden md:block text-slate-500 text-sm italic">{t('passions.instruction')}</p>
         </div>
         
         {/* Premium Infinite Slider */}
@@ -59,12 +61,12 @@ const Passions: React.FC = () => {
         
         {/* Content */}
         <div className="relative z-10 max-w-4xl px-6 text-center py-20 animate-fade-in">
-          <h3 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight drop-shadow-2xl">Climbing</h3>
+          <h3 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight drop-shadow-2xl">{t('passions.climbing')}</h3>
           
           <div className="relative inline-block">
              <span className="absolute -top-6 -left-6 text-6xl text-cyan-500/20 font-serif">"</span>
              <p className="text-xl md:text-2xl text-slate-100 leading-relaxed font-light italic max-w-3xl mx-auto drop-shadow-md">
-              Resilience, discipline, and the pursuit of long-term progression. The mindset on the wall mirrors the strategy in the boardroom: analyze, adapt, and reach new heights.
+              {t('passions.climbingQuote')}
             </p>
             <span className="absolute -bottom-8 -right-6 text-6xl text-cyan-500/20 font-serif transform rotate-180">"</span>
           </div>

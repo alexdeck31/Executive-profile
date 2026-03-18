@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Section from './ui/Section';
-import { SKILLS } from '../constants';
+import { getSkills } from '../constants';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Skills: React.FC = () => {
-  const coreSkills = SKILLS.filter(s => s.category === 'core' || s.category === 'tech');
-  const languages = SKILLS.filter(s => s.category === 'language');
+  const { t } = useLanguage();
+  const skills = getSkills(t);
+  const coreSkills = skills.filter(s => s.category === 'core' || s.category === 'tech');
+  const languages = skills.filter(s => s.category === 'language');
   
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -35,7 +38,7 @@ const Skills: React.FC = () => {
         
         {/* Core Skills */}
         <div>
-          <h3 className="text-2xl font-bold text-white mb-8">Core Competencies</h3>
+          <h3 className="text-2xl font-bold text-white mb-8">{t('skills.core')}</h3>
           <div className="space-y-6">
             {coreSkills.map((skill, index) => (
               <div key={skill.name} className="group">
@@ -67,7 +70,7 @@ const Skills: React.FC = () => {
 
         {/* Languages */}
         <div>
-          <h3 className="text-2xl font-bold text-white mb-8">Languages</h3>
+          <h3 className="text-2xl font-bold text-white mb-8">{t('skills.languages')}</h3>
           <div className="grid grid-cols-1 gap-4">
             {languages.map((lang, langIndex) => (
               <div key={lang.name} className="flex items-center justify-between p-4 glass-card rounded-xl border border-white/5 hover:border-white/10 transition-colors">

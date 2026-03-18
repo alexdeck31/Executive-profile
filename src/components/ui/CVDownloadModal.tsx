@@ -2,6 +2,7 @@ import React from 'react';
 import { X, FileText, Printer, Download } from 'lucide-react';
 import { CV_DESIGN_URL, CV_PRINTABLE_URL } from '../../constants';
 import { trackCVDownload } from '../../analytics';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 interface CVDownloadModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface CVDownloadModalProps {
 }
 
 const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, source }) => {
+  const { t } = useLanguage();
   if (!isOpen) return null;
 
   const handleDownload = (version: 'design' | 'printable', url: string) => {
@@ -28,11 +30,12 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
         <div className="flex items-center justify-between p-6 border-b border-white/5 bg-zinc-900/50">
           <h3 className="text-xl font-bold text-white flex items-center gap-2">
             <Download className="text-cyan-400" size={20} />
-            Download CV
+            {t('cvModal.title')}
           </h3>
           <button 
             onClick={onClose}
             className="text-slate-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/5"
+            title={t('cvModal.cancel')}
           >
             <X size={20} />
           </button>
@@ -41,7 +44,7 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
         {/* Content */}
         <div className="p-6 space-y-4">
           <p className="text-slate-400 text-sm mb-4">
-            Select the format that best suits your needs:
+            {t('cvModal.description')}
           </p>
 
           {/* Design Version Option */}
@@ -54,10 +57,10 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
             </div>
             <div>
               <h4 className="text-white font-semibold mb-1 group-hover:text-cyan-400 transition-colors">
-                Design Version
+                {t('cvModal.designTitle')}
               </h4>
               <p className="text-slate-400 text-xs">
-                Best for digital viewing. Visual, modern layout highlighting key achievements.
+                {t('cvModal.designDesc')}
               </p>
             </div>
           </button>
@@ -72,10 +75,10 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
             </div>
             <div>
               <h4 className="text-white font-semibold mb-1 group-hover:text-purple-400 transition-colors">
-                Printable Version
+                {t('cvModal.printableTitle')}
               </h4>
               <p className="text-slate-400 text-xs">
-                Optimized for printing. Clean, ATS-friendly format with high contrast.
+                {t('cvModal.printableDesc')}
               </p>
             </div>
           </button>
@@ -84,7 +87,7 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
         {/* Footer */}
         <div className="p-4 bg-zinc-950/50 text-center border-t border-white/5">
           <p className="text-xs text-slate-500">
-            Both versions contain the same professional experience details.
+            {t('cvModal.footerNote')}
           </p>
         </div>
       </div>

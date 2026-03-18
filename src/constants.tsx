@@ -1,5 +1,6 @@
 import { Globe, TrendingUp, Users, Cpu, Briefcase, Bot } from 'lucide-react';
 import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from './types';
+import { TranslationKey } from './i18n/translations';
 
 // Updated with the new profile photo
 export const PROFILE_PHOTO_URL = "https://lh3.googleusercontent.com/d/1uufkzWpEuoP40yVD6ZK56dcnuWQAnFbQ"; 
@@ -27,215 +28,215 @@ export const PHOTOGRAPHY_IMAGES = [
   "https://lh3.googleusercontent.com/d/1KvGy_v1hRaZoHUqR1qZJedpQnHrbFdhV"
 ];
 
-export const EXPERIENCES: Experience[] = [
+export const getExperiences = (t: (key: TranslationKey) => string): Experience[] => [
   {
     id: 'exp1',
-    role: 'Head of International Sales',
-    company: 'Instant System',
-    period: 'April 2022 – Dec 2025',
-    location: 'Paris, France',
-    description: 'Leading international expansion for Mobility as a Service (MaaS) solutions. Acting as a Strategic Business Development Consultant for new market entries.',
+    role: t('constants.exp1Role'),
+    company: t('constants.exp1Company'),
+    period: t('constants.exp1Period'),
+    location: t('constants.exp1Location'),
+    description: t('constants.exp1Desc'),
     achievements: [
-      'Expanded international footprint from 0 to 8 countries.',
-      'Built a 30M+€ ARR pipeline from scratch.',
-      'Full ownership of sales cycle and GTM strategy.',
-      'Managed sales team and MaaS SaaS expansion.'
+      t('constants.exp1Ach1'),
+      t('constants.exp1Ach2'),
+      t('constants.exp1Ach3'),
+      t('constants.exp1Ach4')
     ]
   },
   {
     id: 'exp2',
-    role: 'International Business Development Manager',
-    company: 'ECA Group (now Exail)',
-    period: 'Feb 2019 – April 2022',
-    location: 'Toulon, France',
-    description: 'Spearheaded the creation of a new industrial line derived from defense technology. Managed complex B2B sales cycles in high-stakes environments.',
+    role: t('constants.exp2Role'),
+    company: t('constants.exp2Company'),
+    period: t('constants.exp2Period'),
+    location: t('constants.exp2Location'),
+    description: t('constants.exp2Desc'),
     achievements: [
-      'Managed hybrid B2G and B2B sales cycles (50–300K€ deal size).',
-      'Opened markets in Americas, Western Europe, Israel, and UAE.',
-      'Navigated long, complex sales cycles in high-stakes environments.'
+      t('constants.exp2Ach1'),
+      t('constants.exp2Ach2'),
+      t('constants.exp2Ach3')
     ]
   },
   {
     id: 'exp3',
-    role: 'Managing Director Italy',
-    company: 'Groupe Delta Dore',
-    period: 'Jan 2013 – Dec 2018',
-    location: 'Milan, Italy',
-    description: 'Led the Italian subsidiary to become the fastest-growing unit in the group.',
+    role: t('constants.exp3Role'),
+    company: t('constants.exp3Company'),
+    period: t('constants.exp3Period'),
+    location: t('constants.exp3Location'),
+    description: t('constants.exp3Desc'),
     achievements: [
-      'Managed P&L, budget planning, and strategic direction.',
-      'Led a team of 6 direct employees and 6 sales reps.',
-      'Achieved consistent double-digit growth year over year.'
+      t('constants.exp3Ach1'),
+      t('constants.exp3Ach2'),
+      t('constants.exp3Ach3')
     ]
   },
   {
     id: 'exp4',
-    role: 'VIE Business Development Italy',
-    company: 'Groupe Delta Dore',
-    period: 'Jan 2011 – Dec 2012',
-    location: 'Turin, Italy',
-    description: 'Launched the Italian subsidiary startup operations.',
+    role: t('constants.exp4Role'),
+    company: t('constants.exp4Company'),
+    period: t('constants.exp4Period'),
+    location: t('constants.exp4Location'),
+    description: t('constants.exp4Desc'),
     achievements: [
-      'Created distribution network from the ground up.',
-      'Managed local marketing and communication strategies.'
+      t('constants.exp4Ach1'),
+      t('constants.exp4Ach2')
     ]
   }
 ];
 
-export const EDUCATION: Education[] = [
+export const getEducation = (t: (key: TranslationKey) => string): Education[] => [
   {
     id: 'edu1',
-    degree: 'Management & Leadership',
-    institution: 'ESSEC Business School',
-    year: '2017',
+    degree: t('constants.edu1Degree'),
+    institution: t('constants.edu1Inst'),
+    year: t('constants.edu1Year'),
     logo: "https://yourdreamschool.fr/wp-content/uploads/2024/09/Logo_essec2.svg-1.jpg"
   },
   {
     id: 'edu2',
-    degree: 'Erasmus Exchange',
-    institution: 'Università Carlo Cattaneo',
-    year: '2010–2011',
+    degree: t('constants.edu2Degree'),
+    institution: t('constants.edu2Inst'),
+    year: t('constants.edu2Year'),
     logo: "https://liceoclassicomanzoni.edu.it/wp-content/uploads/2025/01/cropped-Logo-LIUC-Istituzionale_Logo-LIUC-youtube.png"
   },
   {
     id: 'edu3',
-    degree: 'Business Master’s Degree',
-    institution: 'Toulouse Business School',
-    year: '2009–2011',
+    degree: t('constants.edu3Degree'),
+    institution: t('constants.edu3Inst'),
+    year: t('constants.edu3Year'),
     logo: "https://www.tbs-education.fr/content/uploads/sites/4/cache/2025/07/logo-tbs-education-rvb-rond-2024/1540885503.png"
   },
   {
     id: 'edu4',
-    degree: 'Engineering Master’s Degree',
-    institution: 'IUP Toulouse Paul Sabatier',
-    year: '2008–2009',
+    degree: t('constants.edu4Degree'),
+    institution: t('constants.edu4Inst'),
+    year: t('constants.edu4Year'),
     logo: "https://pbs.twimg.com/profile_images/1263024485130809344/Ciq4F1y1_400x400.jpg"
   }
 ];
 
-export const VALUE_CARDS: ValueCardItem[] = [
+export const getValueCards = (t: (key: TranslationKey) => string): ValueCardItem[] => [
   {
     id: 'vc1',
-    title: 'International Business Development',
+    title: t('constants.vc1Title'),
     icon: <Globe size={24} />,
-    description: 'Expanding market reach across borders with culturally adapted strategies.',
+    description: t('constants.vc1Desc'),
     details: [
-      'Opened 8+ new country markets',
-      'Cross-border negotiation expert',
-      'Local subsidiary setup & management'
+      t('constants.vc1Det1'),
+      t('constants.vc1Det2'),
+      t('constants.vc1Det3')
     ]
   },
   {
     id: 'vc2',
-    title: 'Revenue Growth & ARR Expansion',
+    title: t('constants.vc2Title'),
     icon: <TrendingUp size={24} />,
-    description: 'Driving sustainable revenue streams through scalable SaaS models.',
+    description: t('constants.vc2Desc'),
     details: [
-      'Built 30M+€ pipeline from scratch',
-      'Double-digit YoY growth track record',
-      'SaaS pricing strategy optimization'
+      t('constants.vc2Det1'),
+      t('constants.vc2Det2'),
+      t('constants.vc2Det3')
     ]
   },
   {
     id: 'vc3',
-    title: 'Strategic Partnerships',
+    title: t('constants.vc3Title'),
     icon: <Users size={24} />,
-    description: 'Forging high-value alliances with public and private stakeholders.',
+    description: t('constants.vc3Desc'),
     details: [
-      'B2G & Public Tender expertise',
-      'C-Level relationship building',
-      'Ecosystem development'
+      t('constants.vc3Det1'),
+      t('constants.vc3Det2'),
+      t('constants.vc3Det3')
     ]
   },
   {
     id: 'vc4',
-    title: 'SaaS & Mobility Platforms',
+    title: t('constants.vc4Title'),
     icon: <Cpu size={24} />,
-    description: 'Deep technical understanding of complex software ecosystems.',
+    description: t('constants.vc4Desc'),
     details: [
-      'MaaS (Mobility as a Service) expert',
-      'Smart City & IoT integration',
-      'Product-market fit alignment'
+      t('constants.vc4Det1'),
+      t('constants.vc4Det2'),
+      t('constants.vc4Det3')
     ]
   },
   {
     id: 'vc5',
-    title: 'Team Leadership & P&L',
+    title: t('constants.vc5Title'),
     icon: <Briefcase size={24} />,
-    description: 'Empowering cross-functional teams to achieve peak performance.',
+    description: t('constants.vc5Desc'),
     details: [
-      'Managed P&L for international units',
-      'Recruited & trained sales teams',
-      'Cross-cultural management'
+      t('constants.vc5Det1'),
+      t('constants.vc5Det2'),
+      t('constants.vc5Det3')
     ]
   },
   {
     id: 'vc6',
-    title: 'Agentic AI & Automation',
+    title: t('constants.vc6Title'),
     icon: <Bot size={24} />,
-    description: 'Leveraging AI agents to automate complex workflows and drive operational efficiency.',
+    description: t('constants.vc6Desc'),
     details: [
-      'Certified N8N Expert',
-      'Sales Operation Automation',
-      'Custom Agent Development'
+      t('constants.vc6Det1'),
+      t('constants.vc6Det2'),
+      t('constants.vc6Det3')
     ]
   }
 ];
 
-export const SKILLS: Skill[] = [
-  { name: 'International Sales', level: 98, category: 'core' },
-  { name: 'Business Development', level: 95, category: 'core' },
-  { name: 'Team Leadership', level: 92, category: 'core' },
-  { name: 'Business Planning', level: 80, category: 'core' },
-  { name: 'Marketing', level: 75, category: 'core' },
-  { name: 'Go-to-Market', level: 94, category: 'core' },
+export const getSkills = (t: (key: TranslationKey) => string): Skill[] => [
+  { name: t('constants.skillIntSales'), level: 98, category: 'core' },
+  { name: t('constants.skillBizDev'), level: 95, category: 'core' },
+  { name: t('constants.skillTeamLead'), level: 92, category: 'core' },
+  { name: t('constants.skillBizPlan'), level: 80, category: 'core' },
+  { name: t('constants.skillMarketing'), level: 75, category: 'core' },
+  { name: t('constants.skillGTM'), level: 94, category: 'core' },
   
-  { name: 'French (Native)', level: 100, category: 'language' },
-  { name: 'English (Fluent)', level: 95, category: 'language' },
-  { name: 'Italian (Fluent)', level: 95, category: 'language' },
-  { name: 'Spanish (Intermediate)', level: 40, category: 'language' },
+  { name: t('constants.skillLangFR'), level: 100, category: 'language' },
+  { name: t('constants.skillLangEN'), level: 95, category: 'language' },
+  { name: t('constants.skillLangIT'), level: 95, category: 'language' },
+  { name: t('constants.skillLangES'), level: 40, category: 'language' },
 ];
 
-export const VIDEOS: Video[] = [
+export const getVideos = (t: (key: TranslationKey) => string): Video[] => [
   {
     id: 'vid1',
-    title: 'Keynote on Smart Mobility',
-    description: 'Discussing the future of MaaS and urban transportation.',
+    title: t('constants.vid1Title'),
+    description: t('constants.vid1Desc'),
     thumbnail: 'https://img.youtube.com/vi/WEwj5DoAC9M/maxresdefault.jpg',
     youtubeId: 'WEwj5DoAC9M'
   },
   {
     id: 'vid2',
-    title: 'Tech & Sustainability',
-    description: 'How technology drives sustainable city development.',
+    title: t('constants.vid2Title'),
+    description: t('constants.vid2Desc'),
     thumbnail: 'https://img.youtube.com/vi/VuyMXY1m79I/maxresdefault.jpg',
     youtubeId: 'VuyMXY1m79I'
   }
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
+export const getTestimonials = (t: (key: TranslationKey) => string): Testimonial[] => [
   {
     id: 't1',
     name: 'Jean-Marc Lazzari',
-    role: 'CEO',
+    role: t('constants.test1Role'),
     company: 'Instant System',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80', 
-    content: 'Alexandre is a driven sales leader who understands how to build international bridges. His ability to navigate complex public tenders and build long-term relationships is a true asset.'
+    content: t('constants.test1Content')
   },
   {
     id: 't2',
     name: 'Guillaume R.',
-    role: 'Aerospace Director',
+    role: t('constants.test2Role'),
     company: 'ECA Group',
     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
-    content: 'An exceptional business developer who opened entirely new markets for our defense sector. Alexandre combines technical knowledge with strong negotiation skills.'
+    content: t('constants.test2Content')
   },
   {
     id: 't3',
     name: 'Marco B.',
-    role: 'Regional Manager',
+    role: t('constants.test3Role'),
     company: 'Groupe Delta Dore',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80',
-    content: 'His leadership in opening the Italian market was exemplary. He built the subsidiary from the ground up and achieved consistent double-digit growth.'
+    content: t('constants.test3Content')
   }
 ];

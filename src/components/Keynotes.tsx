@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
 import Section from './ui/Section';
-import { VIDEOS } from '../constants';
+import { getVideos } from '../constants';
 import { Play, X } from 'lucide-react';
 import { Video } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Keynotes: React.FC = () => {
+  const { t } = useLanguage();
+  const videos = getVideos(t);
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   return (
     <Section id="keynotes" className="bg-black">
       <div className="flex flex-col md:flex-row justify-between items-end mb-12 max-w-6xl mx-auto px-4">
         <div>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">Keynotes &</h2>
-          <h2 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Public Speaking</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">{t('keynotes.titlePart1')}</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">{t('keynotes.titlePart2')}</h2>
         </div>
         <p className="text-slate-400 max-w-sm mt-4 md:mt-0 text-right">
-          Sharing insights during Keynotes and international conferences
+          {t('keynotes.description')}
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto px-4">
-        {VIDEOS.map((video) => (
+        {videos.map((video) => (
           <div 
             key={video.id} 
             className="group relative rounded-2xl overflow-hidden aspect-video cursor-pointer border border-white/10"

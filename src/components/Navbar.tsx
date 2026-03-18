@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, Globe } from 'lucide-react';
 import CVDownloadModal from './ui/CVDownloadModal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,12 +18,16 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Profile', href: '#profile' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Keynotes', href: '#keynotes' },
-    { name: 'Passions', href: '#passions' },
-    { name: 'AI Innovation', href: '#ai-innovation' },
+    { name: t('nav.profile'), href: '#profile' },
+    { name: t('nav.experience'), href: '#experience' },
+    { name: t('nav.keynotes'), href: '#keynotes' },
+    { name: t('passions.sectionSubtitle'), href: '#passions' },
+    { name: t('nav.ai'), href: '#ai-innovation' },
   ];
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'fr' : 'en');
+  };
 
   return (
     <>
@@ -50,6 +56,15 @@ const Navbar: React.FC = () => {
                 {link.name}
               </a>
             ))}
+            
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all text-white cursor-pointer"
+              title={t('nav.changeLanguage')}
+            >
+              <Globe size={14} /> {language === 'en' ? 'FR' : 'EN'}
+            </button>
+
             <button 
               onClick={() => setIsCVModalOpen(true)}
               className="flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wide bg-white/10 hover:bg-white/20 border border-white/10 rounded-full transition-all text-white cursor-pointer"
@@ -59,12 +74,21 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Toggle */}
-          <button 
-            className="md:hidden text-white z-50"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </button>
+          <div className="md:hidden flex items-center gap-4 z-50">
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center gap-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide bg-white/5 border border-white/10 rounded-full text-white cursor-pointer"
+              title={t('nav.changeLanguage')}
+            >
+              <Globe size={14} /> {language === 'en' ? 'FR' : 'EN'}
+            </button>
+            <button 
+              className="text-white"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -89,7 +113,7 @@ const Navbar: React.FC = () => {
           }}
           className="text-cyan-400 text-lg flex items-center gap-2 mt-4 cursor-pointer"
         >
-          <Download size={18} /> Download CV
+          <Download size={18} /> {t('nav.downloadCv')}
         </button>
       </div>
 

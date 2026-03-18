@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
 import { Bot, Workflow, Code2, BrainCircuit, Target, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const AIInnovation: React.FC = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -39,26 +41,24 @@ const AIInnovation: React.FC = () => {
           <div className="max-w-2xl">
             <span className="text-cyan-500 font-bold tracking-widest text-xs uppercase mb-3 block flex items-center gap-2">
               <BrainCircuit size={16} />
-              Additional learning
+              {t('ai.sectionTitle')}
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-              Agentic AI & <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Business Automation</span>
+              {t('ai.titlePart1')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">{t('ai.titlePart2')}</span>
             </h2>
-            <p className="text-slate-400 text-lg leading-relaxed mt-4">
-              As an <strong>N8N AI Expert</strong>, I design autonomous agents that optimize Revenue Operations (RevOps) and accelerate SDR workflows. A technical approach serving commercial performance.
-            </p>
+            <p className="text-slate-400 text-lg leading-relaxed mt-4" dangerouslySetInnerHTML={{ __html: t('ai.description') }} />
           </div>
           
           {/* Certificates Badge */}
           <div className="mt-8 md:mt-0 flex flex-col items-end gap-2">
             <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 flex items-center gap-2 text-sm text-slate-300">
               <CheckCircle2 size={16} className="text-green-500" />
-              <span>Certified N8N AI Agent Automation</span>
+              <span>{t('ai.cert1')}</span>
             </div>
             <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 flex items-center gap-2 text-sm text-slate-300">
               <CheckCircle2 size={16} className="text-green-500" />
-              <span>Certified Vibe Coding (LinkedIn Learning)</span>
+              <span>{t('ai.cert2')}</span>
             </div>
           </div>
         </div>
@@ -82,9 +82,9 @@ const AIInnovation: React.FC = () => {
               <div className="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6 border border-cyan-500/30 backdrop-blur-md">
                 <Code2 size={24} />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Vibe Coding & Rapid Prototyping</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">{t('ai.vibeTitle')}</h3>
               <p className="text-slate-300 leading-relaxed mb-6">
-                Moving beyond traditional development constraints. Using AI-assisted coding to rapidly build custom internal tools, dashboards, and automations that solve specific business bottlenecks without waiting for engineering resources.
+                {t('ai.vibeDesc')}
               </p>
               
               <div className="flex flex-wrap gap-2">
@@ -112,12 +112,11 @@ const AIInnovation: React.FC = () => {
                 <div className="p-3 rounded-full bg-blue-500/10 text-blue-400">
                   <Workflow size={24} />
                 </div>
-                <span className="text-xs font-mono text-slate-500 uppercase">RevOps Automation</span>
+                <span className="text-xs font-mono text-slate-500 uppercase">{t('ai.sdrTag')}</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">SDR Structuration with AI</h3>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{t('ai.sdrTitle')}</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                Designed autonomous workflows that scrape, enrich, and score leads automatically. 
-                Integrating signals from LinkedIn and news sources to feed CRMs with high-intent prospects, allowing SDRs to focus purely on engagement rather than data entry.
+                {t('ai.sdrDesc')}
               </p>
             </div>
 
@@ -134,12 +133,11 @@ const AIInnovation: React.FC = () => {
                 <div className="p-3 rounded-full bg-cyan-500/10 text-cyan-400">
                   <Target size={24} />
                 </div>
-                <span className="text-xs font-mono text-slate-500 uppercase">Strategic Sales</span>
+                <span className="text-xs font-mono text-slate-500 uppercase">{t('ai.meddicTag')}</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">AI-Enhanced MEDDIC Discovery</h3>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{t('ai.meddicTitle')}</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                Building "Pre-Meeting Agents" that analyze 10-K reports, recent news, and executive podcasts of prospects. 
-                The agent generates a comprehensive briefing document mapped to the MEDDIC framework, identifying potential Pain, Metrics, and Champions before the first call.
+                {t('ai.meddicDesc')}
               </p>
             </div>
 
@@ -156,12 +154,11 @@ const AIInnovation: React.FC = () => {
                 <div className="p-3 rounded-full bg-purple-500/10 text-purple-400">
                   <Bot size={24} />
                 </div>
-                <span className="text-xs font-mono text-slate-500 uppercase">Orchestration</span>
+                <span className="text-xs font-mono text-slate-500 uppercase">{t('ai.orchTag')}</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">Multi-Agent Orchestration (N8N AI Expert)</h3>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">{t('ai.orchTitle')}</h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Connecting business tools (Slack, HubSpot, Notion, Gmail) into coherent workflows. 
-                Expertise in chaining LLM nodes to handle complex reasoning tasks and autonomous decision-making processes.
+                {t('ai.orchDesc')}
               </p>
             </div>
 

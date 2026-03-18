@@ -10,27 +10,30 @@ import AIInnovation from './components/AIInnovation';
 import Skills from './components/Skills';
 import Footer from './components/Footer';
 import ChatWidget from './components/ChatWidget';
+import { LanguageProvider } from './i18n/LanguageContext';
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-slate-300 font-sans selection:bg-cyan-500/30 selection:text-white overflow-x-hidden">
-      <ScrollProgress />
-      <Navbar />
-      
-      <main>
-        <Hero />
-        <Profile />
-        <Experience />
-        <Skills />
-        <Education />
-        <Keynotes />
-        <Passions />
-        <AIInnovation />
-      </main>
-      
-      <Footer />
-      <ChatWidget />
-    </div>
+    <LanguageProvider>
+      <div className="min-h-screen bg-black text-slate-300 font-sans selection:bg-cyan-500/30 selection:text-white overflow-x-hidden">
+        <ScrollProgress />
+        <Navbar />
+        
+        <main>
+          <Hero />
+          <Profile />
+          <Experience />
+          <Skills />
+          <Education />
+          <Keynotes />
+          <Passions />
+          <AIInnovation />
+        </main>
+        
+        <Footer />
+        <ChatWidget />
+      </div>
+    </LanguageProvider>
   );
 }
 

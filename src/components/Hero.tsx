@@ -4,9 +4,11 @@ import Button from './ui/Button';
 import { PROFILE_PHOTO_URL, getEmail, LINKEDIN_URL } from '../constants';
 import { trackLinkedinClick } from '../analytics';
 import CVDownloadModal from './ui/CVDownloadModal';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Hero: React.FC = () => {
   const [isCVModalOpen, setIsCVModalOpen] = useState(false);
+  const { t } = useLanguage();
 
   const handleEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -63,23 +65,23 @@ const Hero: React.FC = () => {
               <div className="relative z-10">
                 <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full bg-white/5 border border-white/10">
                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></div>
-                   <span className="text-xs font-semibold tracking-widest uppercase text-cyan-100">Open for Opportunities</span>
+                   <span className="text-xs font-semibold tracking-widest uppercase text-cyan-100">{t('hero.openForOpportunities')}</span>
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight leading-[0.9]">
-                  Alexandre <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-blue-400">Durand</span>
+                  {t('hero.title')} <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-blue-400">{t('hero.subtitle')}</span>
                 </h1>
 
                 {/* Subtitle */}
                 <h2 className="text-lg md:text-xl text-slate-200 font-medium mb-6 border-l-2 border-cyan-500/50 pl-4 leading-relaxed">
-                  SaaS · Sustainability & Tech · B2B sales leader · Agentic AI enabler
+                  {t('hero.tagline')}
                 </h2>
 
                 {/* Personal Quote */}
                 <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8 font-light italic border-t border-white/5 pt-6 max-w-xl">
-                  "Passionate about innovation, performance and making business scalable especially where Tech and impact meet"
-                  <span className="block mt-2 text-slate-500 text-xs uppercase tracking-wider not-italic">BASED IN PARIS, FRANCE</span>
+                  {t('hero.quote')}
+                  <span className="block mt-2 text-slate-500 text-xs uppercase tracking-wider not-italic">{t('hero.location')}</span>
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4">
@@ -87,7 +89,7 @@ const Hero: React.FC = () => {
                     onClick={() => setIsCVModalOpen(true)}
                     className="w-full sm:w-auto ring-1 ring-white/20"
                   >
-                    Download CV
+                    {t('hero.cvBtn')}
                   </Button>
                   
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start">

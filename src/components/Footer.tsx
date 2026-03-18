@@ -3,8 +3,10 @@ import { Mail, Linkedin, Copy, Check } from 'lucide-react';
 import Button from './ui/Button';
 import { getEmail, LINKEDIN_URL } from '../constants';
 import { trackLinkedinClick } from '../analytics';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
   const [emailRevealed, setEmailRevealed] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -33,7 +35,7 @@ const Footer: React.FC = () => {
       
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tighter">
-          Let’s scale innovation <br /><span className="text-gradient-blue">internationally.</span>
+          {t('footer.titlePart1')} <br /><span className="text-gradient-blue">{t('footer.titlePart2')}</span>
         </h2>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
@@ -43,7 +45,7 @@ const Footer: React.FC = () => {
             icon={<Linkedin size={18} className="ml-2"/>}
             onClick={() => trackLinkedinClick('footer')}
           >
-            Connect on LinkedIn
+            {t('footer.connectLinkedIn')}
           </Button>
           
           <div className="relative group">
@@ -53,14 +55,14 @@ const Footer: React.FC = () => {
               icon={!emailRevealed ? <Mail size={18} className="ml-2"/> : undefined}
               className={emailRevealed ? "pr-12" : ""}
             >
-              {emailRevealed ? getEmail() : "Contact via Email"}
+              {emailRevealed ? getEmail() : t('footer.contactEmail')}
             </Button>
             
             {emailRevealed && (
               <button 
                 onClick={copyToClipboard}
                 className="absolute right-2 top-1/2 -translate-y-1/2 p-2 hover:text-cyan-400 text-slate-400 transition-colors z-20"
-                title="Copy to clipboard"
+                title={t('footer.copyClipboard')}
               >
                 {copied ? <Check size={14} className="text-green-500" /> : <Copy size={14} />}
               </button>
@@ -69,12 +71,12 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-sm text-slate-500">
-          <p>© {new Date().getFullYear()} Alexandre Durand. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Alexandre Durand. {t('footer.rights')}</p>
           <button 
             onClick={scrollToTop} 
             className="mt-4 md:mt-0 hover:text-cyan-400 transition-colors"
           >
-            Back to Top
+            {t('footer.backToTop')}
           </button>
         </div>
       </div>

@@ -1,9 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Section from './ui/Section';
-import { TESTIMONIALS } from '../constants';
+import { getTestimonials } from '../constants';
 import { Quote } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Testimonials: React.FC = () => {
+  const { t } = useLanguage();
+  const testimonials = getTestimonials(t);
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +44,7 @@ const Testimonials: React.FC = () => {
           ref={containerRef}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
         >
-          {TESTIMONIALS.map((t, index) => (
+          {testimonials.map((t, index) => (
             <div 
               key={t.id}
               className={`

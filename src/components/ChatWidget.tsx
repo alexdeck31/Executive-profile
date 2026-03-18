@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 import { createChat } from '@n8n/chat';
 import '@n8n/chat/style.css';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const ChatWidget: React.FC = () => {
+  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
   const initialized = useRef(false);
@@ -24,14 +26,20 @@ const ChatWidget: React.FC = () => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (initialized.current) return;
+    const container = document.getElementById('n8n-chat-container');
+    if (container) {
+      container.innerHTML = '';
+    }
 
     createChat({
       webhookUrl: 'https://n8n.alexandredurand.cloud/webhook/6fc3bcc6-a413-4729-8d42-198fa41c2698/chat',
       target: '#n8n-chat-container',
       mode: 'fullscreen',
       showWelcomeScreen: false,
-      initialMessages: [
+      initialMessages: language === 'fr' ? [
+        'Bonjour ! 👋',
+        'Je suis là pour répondre à toutes vos questions sur l\'expérience et l\'expertise d\'Alexandre.'
+      ] : [
         'Hello! 👋',
         'I am here to answer any questions about Alexandre\'s experience and expertise.'
       ],
@@ -44,11 +52,17 @@ const ChatWidget: React.FC = () => {
           inputPlaceholder: "Type your message...",
           closeButtonTooltip: "Close Chat",
         },
+        fr: {
+          title: "Assistant IA",
+          subtitle: "Posez vos questions sur le profil d'Alexandre",
+          footer: "",
+          getStarted: "Nouvelle Conversation",
+          inputPlaceholder: "Tapez votre message...",
+          closeButtonTooltip: "Fermer le chat",
+        }
       },
     });
-
-    initialized.current = true;
-  }, []);
+  }, [language]);
 
   return (
     <>
@@ -135,8 +149,8 @@ const ChatWidget: React.FC = () => {
             <X size={12} />
           </button>
           <p className="text-sm font-medium leading-tight">
-            Curious about my Sales Strategy? <br />
-            <span className="text-cyan-600 font-bold">Ask me anything!</span> 👇
+            {t('chatWidget.promptLine1')} <br />
+            <span className="text-cyan-600 font-bold">{t('chatWidget.promptLine2')}</span> 👇
           </p>
         </div>
 
@@ -153,7 +167,7 @@ const ChatWidget: React.FC = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </span>
-          <span className="font-bold text-sm tracking-wide">Alexandre's AI Assistant</span>
+          <span className="font-bold text-sm tracking-wide">{t('chatWidget.assistantName')}</span>
         </div>
 
         {/* Toggle Button */}

@@ -1,17 +1,20 @@
 import React from 'react';
 import Section from './ui/Section';
-import { EDUCATION } from '../constants';
+import { getEducation } from '../constants';
 import { GraduationCap } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Education: React.FC = () => {
+  const { t } = useLanguage();
+  const education = getEducation(t);
   return (
     <Section className="bg-slate-950/30">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-white mb-4">Education</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">{t('education.sectionTitle')}</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {EDUCATION.map((edu) => (
+        {education.map((edu) => (
           <div key={edu.id} className="glass-card p-6 rounded-xl flex items-start gap-4 hover:bg-white/5 transition-colors">
             <div className="p-3 bg-white/5 rounded-lg text-cyan-400 shrink-0">
               <GraduationCap size={24} />

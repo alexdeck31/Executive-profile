@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Section from './ui/Section';
-import { VALUE_CARDS } from '../constants';
+import { getValueCards } from '../constants';
 import { Plus } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Profile: React.FC = () => {
+  const { t } = useLanguage();
+  const valueCards = getValueCards(t);
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const [isGridVisible, setIsGridVisible] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -47,25 +50,23 @@ const Profile: React.FC = () => {
         
         {/* Header Content */}
         <div className="mb-16 md:mb-24 max-w-5xl">
-          <span className="text-cyan-500 font-bold tracking-widest text-xs uppercase mb-4 block">Executive Summary</span>
+          <span className="text-cyan-500 font-bold tracking-widest text-xs uppercase mb-4 block">{t('profile.sectionSubtitle')}</span>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
-            A strategic leader bridging <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">technology and business</span> on the global stage.
+            {t('profile.headlinePart1')} <br className="hidden md:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">{t('profile.headlinePart2')}</span> {t('profile.headlinePart3')}
           </h2>
           
           <div className="max-w-3xl">
             <p className="text-slate-400 text-lg leading-relaxed">
-              With over 15 years of experience in international B2B SaaS and solution technology, I specialize in scaling companies from early traction to market leadership. 
-              My approach combines deep industry expertise with data-driven go-to-market execution, forging strategic partnerships that unlock sustainable revenue growth. 
-              Trilingual (FR, EN, IT) with a dual degree in Engineering and Business, I bring both technical acumen and strong commercial instincts to help fast-growing companies scale in complex B2B environments.
+              {t('profile.paragraph1')}
             </p>
           </div>
         </div>
 
         {/* Dynamic Grid Layout */}
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {VALUE_CARDS.map((card, index) => {
+          {valueCards.map((card, index) => {
             const isActive = activeCard === card.id;
 
             return (

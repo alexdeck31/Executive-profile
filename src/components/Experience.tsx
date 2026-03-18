@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
-import { EXPERIENCES } from '../constants';
+import { getExperiences } from '../constants';
 import { ChevronDown } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const Experience: React.FC = () => {
-  const [expandedIds, setExpandedIds] = useState<string[]>([EXPERIENCES[0].id]);
+  const { t } = useLanguage();
+  const experiences = getExperiences(t);
+  const [expandedIds, setExpandedIds] = useState<string[]>([experiences[0].id]);
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -48,9 +51,9 @@ const Experience: React.FC = () => {
         
         {/* Header Section */}
         <div className="mb-16">
-          <span className="text-cyan-500 font-bold tracking-widest text-xs uppercase mb-3 block">Career Path</span>
+          <span className="text-cyan-500 font-bold tracking-widest text-xs uppercase mb-3 block">{t('experience.sectionSubtitle')}</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Experience & <span className="text-cyan-500">Impact</span>
+            {t('experience.sectionTitlePart1')} <span className="text-cyan-500">{t('experience.sectionTitlePart2')}</span>
           </h2>
         </div>
 
@@ -59,7 +62,7 @@ const Experience: React.FC = () => {
           <div className="absolute left-[9px] md:left-[11px] top-4 bottom-4 w-[2px] bg-white/10 rounded-full"></div>
 
           <div className="space-y-6">
-            {EXPERIENCES.map((exp, index) => {
+            {experiences.map((exp, index) => {
               const isExpanded = expandedIds.includes(exp.id);
 
               return (
