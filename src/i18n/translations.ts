@@ -203,8 +203,8 @@ export const translations = {
       skillLangIT: 'Italian (Fluent)',
       skillLangES: 'Spanish (Intermediate)',
       
-      vid1Title: 'Keynote on Smart Mobility',
-      vid1Desc: 'Discussing the future of MaaS and urban transportation.',
+      vid1Title: 'Driving Sustainability through Smart Homes',
+      vid1Desc: 'A keynote on optimizing energy efficiency with connected home technologies.',
       vid2Title: 'Tech & Sustainability',
       vid2Desc: 'How technology drives sustainable city development.',
       
@@ -418,8 +418,8 @@ export const translations = {
       skillLangIT: 'Italien (Courant)',
       skillLangES: 'Espagnol (Intermédiaire)',
       
-      vid1Title: 'Keynote sur la Smart Mobility',
-      vid1Desc: 'Discussion sur l\'avenir du MaaS et des transports urbains.',
+      vid1Title: 'La domotique au service de la durabilité',
+      vid1Desc: 'Une keynote sur l\'optimisation de l\'efficacité énergétique avec les technologies de la maison connectée.',
       vid2Title: 'Technologie & Durabilité',
       vid2Desc: 'Comment la technologie stimule le développement durable des villes.',
       
