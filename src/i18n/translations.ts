@@ -2,6 +2,10 @@ export type Language = 'en' | 'fr';
 
 export const translations = {
   en: {
+    seo: {
+      title: 'Alexandre Durand - SaaS & AI Expert | International Sales Director Paris',
+      description: 'Portfolio of Alexandre Durand, International Business Development Consultant and N8N AI Expert based in Paris. Expert in SaaS growth, Smart City, and sales automation.'
+    },
     nav: {
       profile: 'Profile',
       experience: 'Experience',
@@ -20,7 +24,8 @@ export const translations = {
       quote: '"Passionate about innovation, performance and making business scalable especially where Tech and impact meet"',
       location: 'BASED IN PARIS, FRANCE',
       cvBtn: 'Download CV',
-      openForOpportunities: 'Open for Opportunities'
+      openForOpportunities: 'Open for Opportunities',
+      imageAlt: 'Portrait of Alexandre Durand - International Sales Director and SaaS Expert in Paris'
     },
     profile: {
       sectionTitle: 'About Me',
@@ -217,6 +222,10 @@ export const translations = {
     }
   },
   fr: {
+    seo: {
+      title: 'Alexandre Durand - Expert SaaS & IA | Directeur Commercial International Paris',
+      description: 'Portfolio d\'Alexandre Durand, Consultant en Développement Commercial International et Expert IA N8N basé à Paris. Plus de 10 ans d\'expérience.'
+    },
     nav: {
       profile: 'Profil',
       experience: 'Expérience',
@@ -235,7 +244,8 @@ export const translations = {
       quote: '"Passionné par l\'innovation, la performance et la scalabilité des entreprises, particulièrement là où la technologie et l\'impact se rencontrent"',
       location: 'BASÉ À PARIS, FRANCE',
       cvBtn: 'Télécharger CV',
-      openForOpportunities: 'À l\'écoute d\'opportunités'
+      openForOpportunities: 'À l\'écoute d\'opportunités',
+      imageAlt: 'Portrait d\'Alexandre Durand - Directeur Commercial International et Expert SaaS à Paris'
     },
     profile: {
       sectionTitle: 'À Propos',
@@ -434,10 +444,12 @@ export const translations = {
 };
 
 export type TranslationKey = 
+  // SEO
+  | 'seo.title' | 'seo.description'
   // Nav
   | 'nav.profile' | 'nav.experience' | 'nav.education' | 'nav.skills' | 'nav.ai' | 'nav.keynotes' | 'nav.downloadCv' | 'nav.connect' | 'nav.changeLanguage'
   // Hero
-  | 'hero.title' | 'hero.subtitle' | 'hero.tagline' | 'hero.quote' | 'hero.location' | 'hero.cvBtn' | 'hero.openForOpportunities'
+  | 'hero.title' | 'hero.subtitle' | 'hero.tagline' | 'hero.quote' | 'hero.location' | 'hero.cvBtn' | 'hero.openForOpportunities' | 'hero.imageAlt'
   // Profile
   | 'profile.sectionTitle' | 'profile.sectionSubtitle' | 'profile.headlinePart1' | 'profile.headlinePart2' | 'profile.headlinePart3' | 'profile.paragraph1'
   // Experience

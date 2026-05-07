@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Linkedin } from 'lucide-react';
 import Button from './ui/Button';
 import { PROFILE_PHOTO_URL, getEmail, LINKEDIN_URL } from '../constants';
-import { trackLinkedinClick } from '../analytics';
+import { trackLinkedinClick, trackEmailClick } from '../analytics';
 import CVDownloadModal from './ui/CVDownloadModal';
 import { useLanguage } from '../i18n/LanguageContext';
 
@@ -12,6 +12,7 @@ const Hero: React.FC = () => {
 
   const handleEmailClick = (e: React.MouseEvent) => {
     e.preventDefault();
+    trackEmailClick('hero');
     window.location.href = `mailto:${getEmail()}`;
   };
 
@@ -27,7 +28,7 @@ const Hero: React.FC = () => {
          <div className="relative w-full h-full">
             <img 
               src={PROFILE_PHOTO_URL} 
-              alt="Portrait Alexandre Durand - Expert SaaS & IA" 
+              alt={t('hero.imageAlt')} 
               className="w-full h-full object-cover object-top md:object-center transition-transform duration-[3s] hover:scale-105"
               loading="eager"
               fetchpriority="high"
@@ -81,7 +82,14 @@ const Hero: React.FC = () => {
                 {/* Personal Quote */}
                 <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-8 font-light italic border-t border-white/5 pt-6 max-w-xl">
                   {t('hero.quote')}
-                  <span className="block mt-2 text-slate-500 text-xs uppercase tracking-wider not-italic">{t('hero.location')}</span>
+                  <span 
+                    className="block mt-2 text-slate-500 text-xs uppercase tracking-wider not-italic"
+                    itemScope itemType="http://schema.org/PostalAddress"
+                  >
+                    <span itemProp="addressLocality" className="hidden">Paris</span>
+                    <span itemProp="addressCountry" className="hidden">France</span>
+                    <span aria-label="Location: Paris, France">{t('hero.location')}</span>
+                  </span>
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4">

@@ -11,6 +11,9 @@ declare global {
 export const trackEvent = (action: string, params?: Record<string, any>) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', action, params);
+  } else {
+    // For local dev/debugging
+    console.log(`[Analytics] Event: ${action}`, params);
   }
 };
 
@@ -32,5 +35,14 @@ export const trackLinkedinClick = (source: string) => {
     event_category: 'Social',
     event_label: `LinkedIn from ${source}`,
     platform: 'LinkedIn'
+  });
+};
+
+// Specific tracker for Email clicks
+export const trackEmailClick = (source: string) => {
+  trackEvent('contact_click', {
+    event_category: 'Contact',
+    event_label: `Email from ${source}`,
+    contact_method: 'Email'
   });
 };

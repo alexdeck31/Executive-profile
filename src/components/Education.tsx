@@ -27,6 +27,7 @@ const Education: React.FC = () => {
             {edu.logo && (
               <div className="shrink-0 bg-white rounded-full p-1 w-16 h-16 flex items-center justify-center">
                 <img 
+                  loading="lazy"
                   src={edu.logo} 
                   alt={`${edu.institution} logo`} 
                   className="w-full h-full object-contain rounded-full"

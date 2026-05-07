@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Linkedin, Copy, Check } from 'lucide-react';
 import Button from './ui/Button';
 import { getEmail, LINKEDIN_URL } from '../constants';
-import { trackLinkedinClick } from '../analytics';
+import { trackLinkedinClick, trackEmailClick } from '../analytics';
 import { useLanguage } from '../i18n/LanguageContext';
 
 const Footer: React.FC = () => {
@@ -16,8 +16,10 @@ const Footer: React.FC = () => {
 
   const handleEmailClick = () => {
     if (!emailRevealed) {
+      trackEmailClick('footer_reveal');
       setEmailRevealed(true);
     } else {
+      trackEmailClick('footer_mailto');
       window.location.href = `mailto:${getEmail()}`;
     }
   };
