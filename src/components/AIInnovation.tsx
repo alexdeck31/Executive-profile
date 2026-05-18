@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
 import { Bot, Workflow, Code2, BrainCircuit, Target, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { trackAppPresentationDownload } from '../analytics';
 
 const AIInnovation: React.FC = () => {
   const { t } = useLanguage();
@@ -66,7 +67,7 @@ const AIInnovation: React.FC = () => {
         {/* Main Grid Content */}
         <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
-          {/* Left Column: Visual/Technical Illustration */}
+          {/* Left Column: MEDDIC App Feature */}
           <div 
             className={`
               relative group rounded-3xl overflow-hidden min-h-[400px] lg:min-h-full border border-white/10 bg-black/40
@@ -75,23 +76,44 @@ const AIInnovation: React.FC = () => {
             `}
           >
             {/* Image Overlay */}
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2832&auto=format&fit=crop')] bg-cover bg-center opacity-40 mix-blend-screen transition-transform duration-[20s] group-hover:scale-110"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent"></div>
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 transition-all duration-[15s] ease-out group-hover:scale-110 group-hover:opacity-100"
+              style={{ backgroundImage: 'url("/meddic-bg.png")' }}
+            ></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/20 transition-opacity duration-[3s] group-hover:opacity-70"></div>
             
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10 flex flex-col h-full justify-end">
               <div className="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center mb-6 border border-cyan-500/30 backdrop-blur-md">
-                <Code2 size={24} />
+                <Target size={24} />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">{t('ai.vibeTitle')}</h3>
-              <p className="text-slate-300 leading-relaxed mb-6">
-                {t('ai.vibeDesc')}
+              <h3 className="text-3xl font-bold text-white mb-3">{t('ai.meddicTitle')}</h3>
+              <p className="text-slate-300 leading-relaxed mb-8 max-w-lg">
+                {t('ai.meddicDesc')}
               </p>
               
+              {/* Clever PDF Download System */}
+              <div className="mb-6">
+                <a 
+                  href="/MEDDIC_APP_Presentation.pdf" 
+                  download="MEDDIC_APP_Presentation_Alexandre_Durand.pdf"
+                  onClick={() => trackAppPresentationDownload('ai_innovation_section')}
+                  className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium hover:from-cyan-500 hover:to-blue-500 transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transform hover:-translate-y-1"
+                >
+                  <div className="bg-white/20 p-1.5 rounded-lg">
+                    <BrainCircuit size={18} />
+                  </div>
+                  <span className="flex flex-col items-start leading-none">
+                    <span className="text-xs text-cyan-100 font-normal uppercase tracking-wider mb-1">Preview Software</span>
+                    <span>Download App Presentation</span>
+                  </span>
+                </a>
+              </div>
+              
               <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">Replit</span>
-                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">Cursor</span>
-                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">Bolt.new</span>
-                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">React/Typescript</span>
+                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">GenAI</span>
+                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">MEDDIC Framework</span>
+                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">Prompt Engineering</span>
+                <span className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-xs text-slate-400">Custom SaaS</span>
               </div>
             </div>
           </div>
@@ -120,7 +142,7 @@ const AIInnovation: React.FC = () => {
               </p>
             </div>
 
-            {/* Card 2: MEDDIC Discovery */}
+            {/* Card 2: Vibe Coding */}
             <div 
               className={`
                 p-8 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-cyan-500/30 hover:bg-zinc-900 transition-all duration-300 group
@@ -130,14 +152,14 @@ const AIInnovation: React.FC = () => {
               style={{ transitionDelay: '400ms' }}
             >
               <div className="flex items-start justify-between mb-4">
-                <div className="p-3 rounded-full bg-cyan-500/10 text-cyan-400">
-                  <Target size={24} />
+                <div className="p-3 rounded-full bg-emerald-500/10 text-emerald-400">
+                  <Code2 size={24} />
                 </div>
-                <span className="text-xs font-mono text-slate-500 uppercase">{t('ai.meddicTag')}</span>
+                <span className="text-xs font-mono text-slate-500 uppercase">PROTOTYPING</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">{t('ai.meddicTitle')}</h3>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">{t('ai.vibeTitle')}</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                {t('ai.meddicDesc')}
+                {t('ai.vibeDesc')}
               </p>
             </div>
 

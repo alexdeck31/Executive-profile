@@ -63,7 +63,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (!schemaScript) {
       schemaScript = document.createElement('script');
       schemaScript.id = 'json-ld-schema';
-      schemaScript.type = 'application/ld+json';
+      schemaScript.setAttribute('type', 'application/ld+json');
       document.head.appendChild(schemaScript);
     }
     

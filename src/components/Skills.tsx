@@ -38,7 +38,7 @@ const Skills: React.FC = () => {
         
         {/* Core Skills */}
         <div>
-          <h3 className="text-2xl font-bold text-white mb-8">{t('skills.core')}</h3>
+          <h3 className="text-2xl font-bold text-white mb-8">{t('skills.coreSkills')}</h3>
           <div className="space-y-6">
             {coreSkills.map((skill, index) => (
               <div key={skill.name} className="group">

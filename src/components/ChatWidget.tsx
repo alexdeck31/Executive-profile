@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageCircle, X } from 'lucide-react';
 import { createChat } from '@n8n/chat';
 import '@n8n/chat/style.css';
@@ -8,7 +8,6 @@ const ChatWidget: React.FC = () => {
   const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
-  const initialized = useRef(false);
 
   useEffect(() => {
     // Show prompt after 5 seconds
