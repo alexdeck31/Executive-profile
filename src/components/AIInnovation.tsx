@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Section from './ui/Section';
 import { Bot, Workflow, Code2, BrainCircuit, Target, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { trackAppPresentationDownload } from '../analytics';
+import { trackEvent } from '../analytics';
 
 const AIInnovation: React.FC = () => {
   const { t } = useLanguage();
@@ -96,7 +96,11 @@ const AIInnovation: React.FC = () => {
                 <a 
                   href="/MEDDIC_APP_Presentation.pdf" 
                   download="MEDDIC_APP_Presentation_Alexandre_Durand.pdf"
-                  onClick={() => trackAppPresentationDownload('ai_innovation_section')}
+                  onClick={() => trackEvent('download_presentation', {
+                    event_category: 'Download',
+                    event_label: 'MEDDIC App Presentation from ai_innovation_section',
+                    file_name: 'MEDDIC_APP_Presentation.pdf'
+                  })}
                   className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-medium hover:from-cyan-500 hover:to-blue-500 transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transform hover:-translate-y-1"
                 >
                   <div className="bg-white/20 p-1.5 rounded-lg">
