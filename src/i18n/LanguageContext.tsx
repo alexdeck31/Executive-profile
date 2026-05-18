@@ -72,7 +72,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       "@type": "Person",
       "name": "Alexandre Durand",
       "jobTitle": "Senior international account executive SaaS, Head of international sales B2B & AI expert",
-      "url": "https://alexandredurand.com",
+      "url": "https://alexandredurand.cloud",
       "sameAs": [
         "https://www.linkedin.com/in/alexandre-durand-92336330/"
       ],

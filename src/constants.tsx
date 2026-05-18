@@ -5,8 +5,8 @@ import { TranslationKey } from './i18n/translations';
 // Updated with the new profile photo
 export const PROFILE_PHOTO_URL = "https://lh3.googleusercontent.com/d/1uufkzWpEuoP40yVD6ZK56dcnuWQAnFbQ"; 
 
-export const CV_DESIGN_URL = "https://drive.google.com/file/d/10beq5iI_F9T66BQofOdY13ZyTk7XpD0w/view?usp=drive_link";
-export const CV_PRINTABLE_URL = "https://drive.google.com/file/d/1amzvLEXub3ywWBGTK81VGDWUuljr0a4B/view?usp=drive_link";
+export const CV_DESIGN_URL = "/CV Alexandre Durand ATS DESIGN 05 2026.pdf";
+export const CV_PRINTABLE_URL = "/Alexandre Durand — Dynamic ATS CV.pdf";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/durandalexandre/";
 
 // Email Obfuscation to prevent scraping

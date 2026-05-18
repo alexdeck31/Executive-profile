@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alexandredurand.com/sitemap.xml
+Sitemap: https://alexandredurand.cloud/sitemap.xml

@@ -16,7 +16,15 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
 
   const handleDownload = (version: 'design' | 'printable', url: string) => {
     trackCVDownload(source, version);
-    window.open(url, '_blank');
+    
+    // Create an invisible anchor element to trigger the download attribute
+    const a = document.createElement('a');
+    a.href = encodeURI(url);
+    a.download = url.split('/').pop() || 'CV_Alexandre_Durand.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    
     onClose();
   };
 
