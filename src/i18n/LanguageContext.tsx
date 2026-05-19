@@ -82,7 +82,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
         "addressCountry": "FR"
       },
       "knowsAbout": ["SaaS", "Smart City", "Artificial Intelligence", "Business Development", "International Sales", "B2B Sales", "N8N", "B2B", "GTM", "sales leader", "international growth"],
-      "image": "https://media.licdn.com/dms/image/v2/C4D03AQE1zWlqjL-G-Q/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1654871922573?e=1746662400&v=beta&t=Zf2q_B8380rC0w2AAMW1X4Xv-F8-tXmR6mXz4C1pQpE"
+      "image": "https://alexandredurand.cloud/profile-photo.jpg"
     };
 
     schemaScript.textContent = JSON.stringify(schemaData);

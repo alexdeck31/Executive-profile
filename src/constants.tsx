@@ -3,10 +3,10 @@ import { Experience, Education, Video, Skill, ValueCardItem, Testimonial } from 
 import { TranslationKey } from './i18n/translations';
 
 // Updated with the new profile photo
-export const PROFILE_PHOTO_URL = "https://lh3.googleusercontent.com/d/1uufkzWpEuoP40yVD6ZK56dcnuWQAnFbQ"; 
+export const PROFILE_PHOTO_URL = "/profile-photo.jpg"; 
 
-export const CV_DESIGN_URL = "/CV Alexandre Durand ATS DESIGN 05 2026.pdf";
-export const CV_PRINTABLE_URL = "/Alexandre Durand — Dynamic ATS CV.pdf";
+export const CV_DESIGN_URL = "/CV_Alexandre_Durand_ATS_DESIGN_05_2026.pdf";
+export const CV_PRINTABLE_URL = "/Alexandre_Durand_Dynamic_ATS_CV.pdf";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/durandalexandre/";
 
 // Email Obfuscation to prevent scraping
@@ -16,16 +16,16 @@ export const getEmail = () => `${EMAIL_USER}@${EMAIL_DOMAIN}`;
 
 // --- PHOTOGRAPHY SECTION ---
 export const PHOTOGRAPHY_IMAGES = [
-  "https://lh3.googleusercontent.com/d/1XlwosfS5e-8Kgsk3HodlIdLt2vKvri85",
-  "https://lh3.googleusercontent.com/d/1XPnIC1LnbPtXeZrwrv4XDf6_moZiZmxg",
-  "https://lh3.googleusercontent.com/d/17oGwkXSx2yzLy93WZAVz42-56Pze8Ug7",
-  "https://lh3.googleusercontent.com/d/1_i2ONnbFqIDaN-pxYH0XkY4bw9YaC2hu",
-  "https://lh3.googleusercontent.com/d/1pn8tWUWxQweuIk9YjISZbFwg-BcEA8fz",
-  "https://lh3.googleusercontent.com/d/1IQprHsRRkLYUUAc0yFjDb8JXx5kn7sfT",
-  "https://lh3.googleusercontent.com/d/1_wiBiQrXNs3sweJ7zv5Y3nUWsHvEZtdj",
-  "https://lh3.googleusercontent.com/d/1GKDE8ZSTcpGEZujRpwzyKR_cJtLCHO8m",
-  "https://lh3.googleusercontent.com/d/1lC0zeMW4gq345lQiJR8PERbtdd-G57zk",
-  "https://lh3.googleusercontent.com/d/1KvGy_v1hRaZoHUqR1qZJedpQnHrbFdhV"
+  "/Photography passion 1.jpg",
+  "/Photography passion 2.jpg",
+  "/Photography passion 3.jpg",
+  "/Photography passion 4.jpg",
+  "/Photography passion 5.jpg",
+  "/Photography passion 6.jpg",
+  "/Photography passion 7.jpg",
+  "/Photography passion 8.jpg",
+  "/Photography passion 9.jpg",
+  "/Photography passion 10.jpeg"
 ];
 
 export const getExperiences = (t: (key: TranslationKey) => string): Experience[] => [
@@ -89,28 +89,28 @@ export const getEducation = (t: (key: TranslationKey) => string): Education[] =>
     degree: t('constants.edu1Degree'),
     institution: t('constants.edu1Inst'),
     year: t('constants.edu1Year'),
-    logo: "https://yourdreamschool.fr/wp-content/uploads/2024/09/Logo_essec2.svg-1.jpg"
+    logo: "/Logo_essec2.png"
   },
   {
     id: 'edu2',
     degree: t('constants.edu2Degree'),
     institution: t('constants.edu2Inst'),
     year: t('constants.edu2Year'),
-    logo: "https://liceoclassicomanzoni.edu.it/wp-content/uploads/2025/01/cropped-Logo-LIUC-Istituzionale_Logo-LIUC-youtube.png"
+    logo: "/LUIC logo.jpg"
   },
   {
     id: 'edu3',
     degree: t('constants.edu3Degree'),
     institution: t('constants.edu3Inst'),
     year: t('constants.edu3Year'),
-    logo: "https://www.tbs-education.fr/content/uploads/sites/4/cache/2025/07/logo-tbs-education-rvb-rond-2024/1540885503.png"
+    logo: "/tbs-logo.webp"
   },
   {
     id: 'edu4',
     degree: t('constants.edu4Degree'),
     institution: t('constants.edu4Inst'),
     year: t('constants.edu4Year'),
-    logo: "https://pbs.twimg.com/profile_images/1263024485130809344/Ciq4F1y1_400x400.jpg"
+    logo: "/paul-sabatier-university.jpg"
   }
 ];
 

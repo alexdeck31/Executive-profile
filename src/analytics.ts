@@ -24,8 +24,8 @@ export const trackCVDownload = (source: string, version: 'design' | 'printable')
     event_label: `Downloaded ${version} version from ${source}`,
     file_name: version === 'design' ? 'Alexandre_Durand_CV_Design.pdf' : 'Alexandre_Durand_CV_Printable.pdf',
     link_url: version === 'design' 
-      ? 'https://drive.google.com/file/d/1nMZ7PVTAzCI3Eq2eBk1t46h7ugn8Ryvm/view?usp=drive_link'
-      : 'https://drive.google.com/file/d/1qBTyevZVo7Z5jw_GoNM2OyCisKmcBRKf/view?usp=drive_link'
+      ? '/CV_Alexandre_Durand_ATS_DESIGN_05_2026.pdf'
+      : '/Alexandre_Durand_Dynamic_ATS_CV.pdf'
   });
 };
 

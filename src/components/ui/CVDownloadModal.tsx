@@ -19,7 +19,7 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
     
     // Create an invisible anchor element to trigger the download attribute
     const a = document.createElement('a');
-    a.href = encodeURI(url);
+    a.href = url;
     a.download = url.split('/').pop() || 'CV_Alexandre_Durand.pdf';
     document.body.appendChild(a);
     a.click();
@@ -29,9 +29,9 @@ const CVDownloadModal: React.FC<CVDownloadModalProps> = ({ isOpen, onClose, sour
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in-fast">
       <div 
-        className="relative w-full max-w-md bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-scale-in"
+        className="relative w-full max-w-md bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-scale-in-fast"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
